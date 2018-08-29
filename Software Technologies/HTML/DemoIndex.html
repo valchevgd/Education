@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Изчисления</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Диагонал</h1>
+
+<form>
+    <label for="width">Ширина</label>
+    <input type="text" id="width">
+    <label for="height">Дължина</label>
+    <input type="text" id="height">
+    <input type="button" onclick="GetDiagonal()" value="Изчисли">
+    <br>
+    <div>Диагонал: <span id="result"></span></div>
+</form>
+
+<h1>Ъгли</h1>
+
+<form>
+    <label for="sideA">Страна A</label>
+    <input type="text" id="sideA">
+    <label for="sideB">Страна B</label>
+    <input type="text" id="sideB">
+    <input type="button" onclick="GetAngles()" value="Изчисли">
+    <br>
+    <div>Ъгъл A: <span id="angleA"></span></div>
+    <div>Ъгъл B: <span id="angleB"></span></div>
+    <div>Ъгъл C: <span id="angleC"></span></div>
+    <br>
+    <div>Страна C: <span id="sideC"></span></div>
+</form>
+
+<script>
+    function GetDiagonal() {
+        let width = document.getElementById('width').value;
+        let height = document.getElementById('height').value;
+        let diagonal = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
+        diagonal = diagonal.toFixed(2);
+        document.getElementById('result').innerHTML = diagonal;
+    }
+
+    function GetAngles() {
+        let sideA = document.getElementById('sideA').value;
+        let sideB = document.getElementById('sideB').value;
+        let sideC = Math.sqrt(Math.pow(sideA, 2) + Math.pow(sideB, 2));
+
+        let angA = Math.acos((Math.pow(sideA, 2) + Math.pow(sideB, 2) - Math.pow(sideC, 2)) / (2 * sideA * sideB));
+        let angB = Math.acos((Math.pow(sideB, 2) + Math.pow(sideC, 2) - Math.pow(sideA, 2)) / (2 * sideB * sideC));
+        let angC = Math.acos((Math.pow(sideC, 2) + Math.pow(sideA, 2) - Math.pow(sideB, 2)) / (2 * sideC * sideA));
+
+        angA = angA * (180 / Math.PI);
+        angB = angB * (180 / Math.PI);
+        angC = angC * (180 / Math.PI);
+        angA = angA.toFixed(2);
+        angB = angB.toFixed(2);
+        angC = angC.toFixed(2);
+        sideC = sideC.toFixed(2);
+
+        document.getElementById('angleA').innerHTML = angA;
+        document.getElementById('angleB').innerHTML = angB;
+        document.getElementById('angleC').innerHTML = angC;
+        document.getElementById('sideC').innerHTML = sideC;
+    }
+
+</script>
+</body>
