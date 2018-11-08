@@ -1,21 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: valchevgd
- * Date: 11/7/2018
- * Time: 6:24 PM
- */
 
 namespace Database;
 
 
 use PDO;
 
-class PDODatabase implements PDODatabaseInterface
+class PDODatabase implements DatabaseInterface
 {
-    /**
-     * @var PDO
-     */
     private $pdo;
 
     public function __construct(PDO $pdo)
@@ -23,10 +14,11 @@ class PDODatabase implements PDODatabaseInterface
         $this->pdo = $pdo;
     }
 
+
     public function query(string $query): PreparedStatementInterface
     {
-        $stmt = $this->pdo->query($query);
+        $stmt = $this->pdo->prepare($query);
 
-        return new PreparedStatement($stmt);
+        return new PDOPreparedStatement($stmt);
     }
 }

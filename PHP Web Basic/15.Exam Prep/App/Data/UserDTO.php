@@ -32,7 +32,7 @@ class UserDTO
      */
     private $lastName;
 
-    public static function create(string $username, string $password, string $first_name, string $last_name)
+    public static function create(string $username, string $password, string $first_name, string $last_name):UserDTO
     {
         $user = new UserDTO();
 
@@ -40,6 +40,8 @@ class UserDTO
             ->setPassword($password)
             ->setFirstName($first_name)
             ->setLastName($last_name);
+
+        return $user;
     }
 
     /**
