@@ -1,15 +1,15 @@
-<h2>Login</h2>
+<h1>Login</h1>
 
-<form method="post">
+<form method="POST">
     <label>
         Username:
-        <input type="text" name="username"/>
-    </label><br/>
+        <input type="text" name="username" />
+    </label> <br/>
     <label>
         Password:
         <input type="password" name="password"/>
     </label><br/>
-    <input type="submit" name="login" value="Login"/>
+    <label>
+        <input type="submit" value="Login" name="login"/>
+    </label>
 </form>
-
-Or <a href="register.php">register</a>.

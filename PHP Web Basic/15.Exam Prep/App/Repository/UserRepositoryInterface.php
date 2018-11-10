@@ -8,7 +8,7 @@ interface UserRepositoryInterface
 {
     public function insert(UserDTO $user):bool;
 
-    public function findOneByUsername(string $username):UserDTO;
+    public function findOneByUsername(string $username):?UserDTO;
 
     public function findOneById(int $user_id):UserDTO;
 

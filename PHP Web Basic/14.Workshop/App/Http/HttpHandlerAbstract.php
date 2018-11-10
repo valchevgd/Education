@@ -1,19 +1,13 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: valchevgd
- * Date: 11/4/2018
- * Time: 11:55 AM
- */
 
 namespace App\Http;
 
 
+use App\Data\UserDTO;
 use Core\TemplateInterface;
 
 class HttpHandlerAbstract
 {
-
     /**
      * @var TemplateInterface
      */
@@ -27,6 +21,11 @@ class HttpHandlerAbstract
     public function redirect($url)
     {
         header("Location: $url");
-        exit;
+    }
+
+
+    public function render(string $templateName, $data = null)
+    {
+        $this->template->render($templateName, $data);
     }
 }

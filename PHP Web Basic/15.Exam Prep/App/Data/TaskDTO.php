@@ -162,7 +162,7 @@ class TaskDTO
     public function setDescription(string $description): TaskDTO
     {
         if (strlen($description) < 10){
-            throw new Exception('Description must be at least 4 symbols');
+            throw new Exception('Description must be at least 10 symbols');
         }elseif (strlen($description) > 10000){
             throw new Exception('Are you serious?! Way tooooo loooog!');
         }

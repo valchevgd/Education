@@ -18,19 +18,24 @@ class UserHttpHandler extends HttpHandlerAbstract
     {
         if (isset($form_data['register'])) {
 
-            $user = UserDTO::create(
-                $form_data['username'],
-                $form_data['password'],
-                $form_data['first_name'],
-                $form_data['last_name']
-            );
+            try{
+                $user = UserDTO::create(
+                    $form_data['username'],
+                    $form_data['password'],
+                    $form_data['first_name'],
+                    $form_data['last_name']
+                );
 
-
-            if ($userService->register($user, $form_data['confirm_password'])) {
-                $this->redirect('success.php');
+                if ($userService->register($user, $form_data['confirm_password'])) {
+                    $this->redirect('success.php');
+                }
+            }catch (\PDOException $exception){
+                echo '<p style="color: red">Username is already taken.<p/>';
+                $this->template->render('user/register');
+            }catch (\Exception $exception){
+                echo '<p style="color: red">' . $exception->getMessage() . '<p/>';
+                $this->template->render('user/register');
             }
-
-
         } else {
             $this->template->render('user/register');
         }
@@ -38,11 +43,18 @@ class UserHttpHandler extends HttpHandlerAbstract
 
     public function login(\App\Service\UserService $userService, array $form_data)
     {
-        if (isset($form_data['login'])){
-            if($userService->login($form_data['username'], $form_data['password'])){
-                $this->redirect('index.php');
+        if (isset($form_data['login'])) {
+
+            try{
+                if ($userService->login($form_data['username'], $form_data['password'])) {
+                    $this->redirect('index.php');
+                }
+            }catch (\Exception $exception){
+                echo '<p style="color: red">' . $exception->getMessage() . '<p/>';
+                $this->template->render('user/login');
             }
-        }else{
+
+        } else {
             $this->template->render('user/login');
         }
     }
@@ -59,21 +71,21 @@ class UserHttpHandler extends HttpHandlerAbstract
         }
     }
 
-    public function delete(\App\Service\TaskService $taskService,\App\Service\UserService $userService, array $form_data)
+    public function delete(\App\Service\TaskService $taskService, \App\Service\UserService $userService, array $form_data)
     {
         $user = $userService->getCurrentUser($_SESSION['id']);
 
         if (isset($form_data['yes'])) {
             try {
                 if ($userService->delete($_SESSION['id'], $form_data['password'])) {
-                    if($taskService->deleteTaskByUser($_SESSION['id'])){
+                    if ($taskService->deleteTaskByUser($_SESSION['id'])) {
                         session_destroy();
                         $this->redirect("index.php");
                     }
 
                 }
             } catch (\Exception $e) {
-                echo '<p style="color: red">'.$e->getMessage().'<p/>';
+                echo '<p style="color: red">' . $e->getMessage() . '<p/>';
                 $this->template->render("user/delete", $user);
             }
 

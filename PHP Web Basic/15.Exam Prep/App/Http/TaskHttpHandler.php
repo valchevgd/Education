@@ -12,19 +12,25 @@ class TaskHttpHandler extends HttpHandlerAbstract
     {
         if (isset($form_data['add'])){
 
-            $task = TaskDTO::create(
-              $form_data['title'],
-              $form_data['description'],
-              $form_data['location'],
-              $_SESSION['id'],
-              $form_data['cat_id'],
-              $form_data['start_on'],
-              $form_data['due_date']
-            );
+            try{
+                $task = TaskDTO::create(
+                    $form_data['title'],
+                    $form_data['description'],
+                    $form_data['location'],
+                    $_SESSION['id'],
+                    $form_data['cat_id'],
+                    $form_data['start_on'],
+                    $form_data['due_date']
+                );
 
-            if ($taskService->addTask($task)){
-                $this->redirect('index.php');
+                if ($taskService->addTask($task)){
+                    $this->redirect('index.php');
+                }
+            }catch (\Exception $exception){
+                echo '<p style="color: red">' . $exception->getMessage() . '<p/>';
+                $this->template->render('task/add');
             }
+
         }else{
             $this->template->render('task/add');
         }
@@ -33,19 +39,26 @@ class TaskHttpHandler extends HttpHandlerAbstract
     public function editTask(\App\Service\TaskService $taskService, array $form_data)
     {
         if (isset($form_data['edit'])){
-            $task = TaskDTO::create(
-                $form_data['title'],
-                $form_data['description'],
-                $form_data['location'],
-                $_SESSION['id'],
-                intval($form_data['cat_id']),
-                $form_data['start_on'],
-                $form_data['due_date']
-            );
 
-            if ($taskService->editTask($task, $form_data['task_id'])){
-                $this->redirect('index.php');
+            try{
+                $task = TaskDTO::create(
+                    $form_data['title'],
+                    $form_data['description'],
+                    $form_data['location'],
+                    $_SESSION['id'],
+                    intval($form_data['cat_id']),
+                    $form_data['start_on'],
+                    $form_data['due_date']
+                );
+
+                if ($taskService->editTask($task, $form_data['task_id'])){
+                    $this->redirect('index.php');
+                }
+            }catch (\Exception $exception){
+                echo '<p style="color: red">' . $exception->getMessage() . '<p/>';
+                $this->template->render("task/edit", $taskService->findOneById($_GET['task_id']));
             }
+
         }else{
             $this->template->render("task/edit", $taskService->findOneById($_GET['task_id']));
         }

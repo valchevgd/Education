@@ -30,7 +30,7 @@ class UserRepository implements UserRepositoryInterface
         return true;
     }
 
-    public function findOneByUsername(string $username): UserDTO
+    public function findOneByUsername(string $username): ?UserDTO
     {
         return $this->db->query('SELECT user_id as id, username, password
                                         FROM users

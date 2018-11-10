@@ -12,9 +12,10 @@
         <input type="text" name="location" value="<?=$data->getLocation();?>">
     </label><br/>
     <label>
-        Category:
         <select name="cat_id">
-            <option selected="selected" value="<?= $data->getCatId();?>"><?=$data->getCategoryName()?></option>
+            <option value="1" <?php if ($data->getCatId() === 1) echo 'selected'?>>Anniversary</option>
+            <option value="2" <?php if ($data->getCatId() === 2) echo 'selected'?>>Birthday</option>
+            <option value="3" <?php if ($data->getCatId() === 3) echo 'selected'?>>Business</option>
         </select>
     </label><br/>
     <label>

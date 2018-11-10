@@ -1,26 +1,6 @@
-<?php /** @var \App\Data\UserDTO $data */?>
+<h3 style="color: red">Are you sure you want to delete your profile?<h3/>
 
-<h2 style="color: red">Are you sure you want to delete your profile?</h2>
-
-<form method="post">
-    Enter your password to confirm deleting process:
-    <input type="password" name="password"/><br/><br/>
-    <input type="submit" name="yes" value="Yes"/>
-    <input type="submit" name="no" value="No"/><br/>
-
-</form>
-
-<table border="1">
-    <tr>
-        <th>Username</th>
-        <th>Full Name</th>
-        <th>Birthday</th>
-    </tr>
-
-        <tr>
-            <td><?= $data->getUsername();?></td>
-            <td><?= $data->getFirstName().' '.$data->getLastName();?></td>
-            <td><?= $data->getBornOn();?></td>
-        </tr>
-</table>
-<br/>
+    <form method="post">
+        <input type="submit" value="Yes" name="yes">
+        <input type="submit" value="No" name="no">
+    </form>

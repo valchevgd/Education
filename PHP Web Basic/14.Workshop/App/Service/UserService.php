@@ -8,6 +8,9 @@ use App\Repository\UserRepository;
 
 class UserService implements UserServiceInterface
 {
+    /**
+     * @var UserRepository
+     */
     private $userRepository;
 
     public function __construct(UserRepository $userRepository)
@@ -17,40 +20,40 @@ class UserService implements UserServiceInterface
 
     public function register(UserDTO $user, string $confirm_password): bool
     {
-        /** @var UserDTO[] $all_users */
-        $all_users = $this->userRepository->findAll();
-        foreach ($all_users as $current){
-            if ($current->getUsername() === $user->getUsername()){
-                throw new \Exception('Username is already taken!');
-            }
+        if ($user->getPassword() !== $confirm_password){
+            return false;
         }
-        if ($user->getPassword() !== $confirm_password) {
-            throw new \Exception('Password does not match.');
+
+        if ($this->userRepository->findOneByUsername($user->getUsername()) !== null){
+            return false;
         }
-        $this->hashPassword($user);
+
+       $this->password_hash($user);
 
         return $this->userRepository->insert($user);
-
     }
 
     public function login(string $username, string $password): bool
     {
-        $user = $this->userRepository->findOneByUsername($username);
+        $current_user = $this->userRepository->findOneByUsername($username);
 
-        if (password_verify($password, $user->getPassword())) {
-            $_SESSION['id'] = $user->getId();
-            return true;
-        }else{
+        if ($current_user === null){
             return false;
         }
 
+        if (!password_verify($password, $current_user->getPassword())){
+            return false;
+        }
+
+        $_SESSION['id'] = $current_user->getId();
+        return true;
     }
 
-    public function edit(int $id, UserDTO $user): bool
+    public function edit( UserDTO $user): bool
     {
-        $this->hashPassword($user);
 
-        return $this->userRepository->update($user);
+        $this->password_hash($user);
+        return $this->userRepository->update($_SESSION['id'], $user);
     }
 
     /** @return \Generator|UserDTO[] */
@@ -61,36 +64,32 @@ class UserService implements UserServiceInterface
 
     public function isLogged(): bool
     {
-        if ($_SESSION) {
+        if ($_SESSION){
             return true;
-        } else {
+        }else{
             return false;
         }
     }
 
     public function getCurrentUser(): ?UserDTO
     {
+        if (!isset($_SESSION['id'])){
+            return null;
+        }
+
         return $this->userRepository->findOne($_SESSION['id']);
     }
 
 
-    public function hashPassword(UserDTO $user)
+    private function password_hash(UserDTO $user)
     {
         $password = $user->getPassword();
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
         $user->setPassword($hash_password);
     }
 
-    public function delete($id, $password): bool
+    public function delete(UserDTO $user): bool
     {
-
-        $user = $this->userRepository->findOne($id);
-
-        if (password_verify($password, $user->getPassword())){
-            return $this->userRepository->delete($id);
-        }else{
-            throw new \Exception('Wrong password!');
-        }
-
+       return $this->userRepository->delete($user);
     }
 }

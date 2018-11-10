@@ -4,104 +4,98 @@ namespace App\Http;
 
 
 use App\Data\UserDTO;
+use App\Service\UserServiceInterface;
 
 class UserHttpHandler extends HttpHandlerAbstract
 {
-
-    public function register(\App\Service\UserService $userService, array $form_data)
+    public function register(UserServiceInterface $userService, array $formData = [])
     {
-        if (isset($form_data['register'])) {
-
+        if (isset($formData['register'])) {
             $user = UserDTO::create(
-                $form_data['username'],
-                $form_data['password'],
-                $form_data['first_name'],
-                $form_data['last_name'],
-                $form_data['born_on']
+                $formData['username'],
+                $formData['password'],
+                $formData['first_name'],
+                $formData['last_name'],
+                $formData['born_on']
             );
 
-            try {
-                if ($userService->register($user, $form_data['confirm_password'])) {
-                    $this->redirect("login.php");
-                }
-
-            } catch (\Exception $e) {
-                echo '<p style="color: red">'.$e->getMessage().'<p/>';
-                $this->template->render("user/register");
+            if ($userService->register($user, $formData['confirm_password'])) {
+                $this->redirect('login.php');
             }
-
         } else {
-            $this->template->render("user/register");
+            $this->render('user/register');
         }
     }
 
-    public function login(\App\Service\UserService $userService, array $form_data)
+    public function login(UserServiceInterface $userService, array $formData = [])
     {
-        if (isset($form_data['login'])) {
-            if ($userService->login($form_data['username'], $form_data['password'])) {
-                $this->redirect("index.php");
+
+        if (isset($formData['login'])) {
+            if ($userService->login($formData['username'], $formData['password'])) {
+
+                $this->redirect('profile.php');
             } else {
-                echo '<p style="color: red">Wrong username or password.<p/>';
-                $this->template->render("user/login");
+                $this->render('user/login');
             }
         } else {
-            $this->template->render("user/login");
+            $this->render('user/login');
         }
     }
 
-    public function profile(\App\Service\UserService $userService, array $form_data)
+    public function profile(UserServiceInterface $userService, array $formData = [])
     {
-        if (isset($form_data['edit'])) {
+
+        if (isset($formData['edit'])) {
 
             $user = UserDTO::create(
-                $form_data['username'],
-                $form_data['password'],
-                $form_data['first_name'],
-                $form_data['last_name'],
-                $form_data['born_on']
+                $formData['username'],
+                $formData['password'],
+                $formData['first_name'],
+                $formData['last_name'],
+                $formData['born_on']
             );
 
-            if ($userService->edit($_SESSION['id'], $user)) {
-                $this->redirect("index.php");
-            }
-        } else {
-            $user = $userService->getCurrentUser();
+            if ($userService->edit($user)) {
 
-            $this->template->render("user/profile", $user);
+                $this->redirect('profile.php');
+            }
+
+        } else {
+            $current_user = $userService->getCurrentUser();
+            $this->render('user/profile', $current_user);
         }
     }
 
-    public function logout($form_data)
+    public function view_all(UserServiceInterface $userService)
     {
-        if (isset($form_data['yes'])) {
+        $all_users = $userService->viewAll();
+        $this->render("user/users", $all_users);
+    }
+
+    public function logout(array $formData)
+    {
+        if (isset($formData['yes'])){
             session_destroy();
-            $this->redirect("index.php");
-        } elseif (isset($form_data['no'])) {
-            $this->redirect("index.php");
-        } else {
-            $this->template->render("user/logout");
+            $this->redirect('index.php');
+        }elseif (isset($formData['no'])){
+            $this->redirect('profile.php');
+        }else{
+            $this->render('user/logout');
         }
     }
 
-    public function delete(\App\Service\UserService $userService, array $form_data)
+    public function delete(\App\Service\UserService $userService, array $formData)
     {
-        $user = $userService->getCurrentUser();
-
-        if (isset($form_data['yes'])) {
-            try {
-                if ($userService->delete($_SESSION['id'], $form_data['password'])) {
-                    session_destroy();
-                    $this->redirect("index.php");
-                }
-            } catch (\Exception $e) {
-                echo '<p style="color: red">'.$e->getMessage().'<p/>';
-                $this->template->render("user/delete", $user);
+        if (isset($formData['yes'])){
+            $user = $userService->getCurrentUser();
+            if ($userService->delete($user)){
+                session_destroy();
+                $this->redirect('index.php');
             }
-
-        } elseif (isset($form_data['no'])) {
-            $this->redirect("index.php");
-        } else {
-            $this->template->render("user/delete", $user);
+        }elseif (isset($formData['no'])){
+            $this->redirect('profile.php');
+        }else{
+            $this->render('user/delete');
         }
     }
 }

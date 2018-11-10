@@ -4,9 +4,9 @@ session_start();
 
 spl_autoload_register();
 
-$db_info = parse_ini_file("Config/db.ini");
+$dbInfo = parse_ini_file("Config/db.ini");
 $template = new \Core\Template();
-$db = new \Database\PDODatabase(new \PDO($db_info['dsn'], $db_info['user'], $db_info['pass']));
-$userService = new \App\Service\UserService(new \App\Repository\UserRepository($db));
-$homeHandler = new \App\Http\HomeHttpHandler($template);
+$db = new \Database\PDODatabase( new PDO($dbInfo['dsn'], $dbInfo['user'], $dbInfo['pass']));
+$userRepository = new \App\Repository\UserRepository($db);
+$userService = new \App\Service\UserService($userRepository);
 $userHttpHandler = new \App\Http\UserHttpHandler($template);

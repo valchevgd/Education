@@ -1,37 +1,43 @@
 <?php
 
+
 namespace App\Repository;
 
 
 use App\Data\UserDTO;
 use Database\PDODatabase;
 
+
 class UserRepository implements UserRepositoryInterface
 {
+    /**
+     * @var PDODatabase
+     */
     private $db;
 
-    public function __construct(PDODatabase $db)
+    public function __construct($db)
     {
         $this->db = $db;
     }
 
     public function findOne(int $id): UserDTO
     {
-        return $this->db->query("
-                                SELECT username, password, first_name AS firstName, last_name AS lastName, born_on AS bornOn
-                                FROM users
-                                WHERE id = ?
-        ")->execute([$id])
+        return $this->db->query("SELECT id, username, password, first_name AS firstName, last_name AS lastName, born_on AS bornOn
+                               FROM users
+                           WHERE id = ?")
+            ->execute([$id])
             ->fetch(UserDTO::class)
             ->current();
+
     }
 
     public function findOneByUsername(string $username): ?UserDTO
     {
-       return $this->db->query("SELECT * 
-                              FROM users 
-                              WHERE username = ?
-                              ")->execute([$username])
+        return $this->db->query("SELECT id, username, password, first_name AS firstName, last_name AS lastName, born_on AS bornOn
+                               FROM users
+                               WHERE username = ?
+                           ")
+            ->execute([$username])
             ->fetch(UserDTO::class)
             ->current();
     }
@@ -39,31 +45,34 @@ class UserRepository implements UserRepositoryInterface
     /** @return \Generator|UserDTO[] */
     public function findAll(): \Generator
     {
-       return $this->db->query("
-        SELECT username, password, first_name AS firstName, last_name AS lastName, born_on AS bornOn
-         FROM users
-        ")->execute()
+        return $this->db->query("SELECT id, username, password, first_name AS firstName, last_name AS lastName, born_on AS bornOn
+                               FROM users
+                           ")
+            ->execute()
             ->fetch(UserDTO::class);
+
     }
 
-    public function update(UserDTO $user): bool
+    public function update(int $id, UserDTO $user): bool
     {
         $this->db->query("
-                                UPDATE users
-                                SET username = ?,
+                                UPDATE users 
+                                SET 
+                                username = ?, 
                                 password = ?,
-                                first_name = ?,
-                                last_name = ?,
+                                first_name = ?, 
+                                last_name = ?, 
                                 born_on = ?
-                                WHERE id = ?
-        ")->execute([
-            $user->getUsername(),
-            $user->getPassword(),
-            $user->getFirstName(),
-            $user->getLastName(),
-            $user->getBornOn(),
-            $_SESSION['id']
-        ]);
+                                WHERE id = ?")
+                                
+            ->execute([
+                $user->getUsername(),
+                $user->getPassword(),
+                $user->getFirstName(),
+                $user->getLastName(),
+                $user->getBornOn(),
+                $id
+            ]);
 
         return true;
     }
@@ -71,24 +80,24 @@ class UserRepository implements UserRepositoryInterface
     public function insert(UserDTO $user): bool
     {
         $this->db->query("INSERT INTO users(username, password, first_name, last_name, born_on)
-                                VALUES (?, ?, ?, ?, ?)
-                                ")->execute([
-                                    $user->getUsername(),
-                                    $user->getPassword(),
-                                    $user->getFirstName(),
-                                    $user->getLastName(),
-                                    $user->getBornOn()
-        ]);
+                                VALUES (?, ?, ?, ?, ?)")
+            ->execute([
+                $user->getUsername(),
+                $user->getPassword(),
+                $user->getFirstName(),
+                $user->getLastName(),
+                $user->getBornOn(),
+            ]);
 
         return true;
     }
 
-    public function delete(int $id): bool
+    public function delete(UserDTO $user): bool
     {
-        $this->db->query("
-        DELETE FROM users
-        WHERE id = ?")
-            ->execute([$id]);
+        $this->db->query("DELETE
+                                FROM users
+                                WHERE id = ?
+                                ")->execute([$user->getId()]);
 
         return true;
     }

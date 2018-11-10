@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Repository;
 
 
@@ -14,9 +15,9 @@ interface UserRepositoryInterface
     /** @return \Generator|UserDTO[] */
     public function findAll():\Generator;
 
-    public function update(UserDTO $user):bool;
+    public function update(int $id, UserDTO $user):bool;
 
     public function insert(UserDTO $user):bool;
 
-    public function delete(int $id):bool;
+    public function delete(UserDTO $user):bool;
 }
