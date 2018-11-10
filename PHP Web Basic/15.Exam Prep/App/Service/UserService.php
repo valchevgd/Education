@@ -43,4 +43,37 @@ class UserService implements UserServiceInterface
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $user->setPassword($hashed_password);
     }
+
+    public function login(string $username, string $password): bool
+    {
+        $user = $this->userRepository->findOneByUsername($username);
+
+        if (!$user){
+            throw new \Exception('Wrong username or password');
+        }
+
+        if (!password_verify($password, $user->getPassword())){
+            throw new \Exception('Wrong username or password');
+        }
+
+        $_SESSION['id'] = $user->getId();
+
+        return true;
+    }
+
+    public function getCurrentUser(int $user_id): UserDTO
+    {
+        return $this->userRepository->findOneById($user_id);
+    }
+
+    public function delete(int $user_id, string $password): bool
+    {
+        $user = $this->userRepository->findOneById($user_id);
+
+        if (password_verify($password, $user->getPassword())){
+            return $this->userRepository->delete($user_id);
+        }else{
+            throw new \Exception('Wrong password!');
+        }
+    }
 }

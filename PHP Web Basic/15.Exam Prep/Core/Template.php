@@ -5,14 +5,13 @@ namespace Core;
 
 class Template implements TemplateInterface
 {
-
-    private const DIRECTORY_PATH = "App/Templates/";
-    private const FILE_EXTENSION = ".php";
+    const TEMPLATE_DIRECTORY = "App/Templates/";
+    const TEMPLATE_EXTENSION = ".php";
 
     public function render(string $template_name, $data = null)
     {
-        require_once self::DIRECTORY_PATH
+        require_once self::TEMPLATE_DIRECTORY
         .$template_name
-            .self::FILE_EXTENSION;
+            .self::TEMPLATE_EXTENSION;
     }
 }

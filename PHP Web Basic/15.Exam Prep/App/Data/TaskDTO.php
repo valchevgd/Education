@@ -2,8 +2,6 @@
 
 namespace App\Data;
 
-
-use DateTime;
 use Exception;
 
 class TaskDTO
@@ -39,16 +37,26 @@ class TaskDTO
     private $catId;
 
     /**
-     * @var DateTime
+     * @var string
      */
     private $startedOn;
 
     /**
-     * @var DateTime
+     * @var string
      */
     private $dueDate;
 
-    public static function create(string $title, string $description, string $location, int $author_id, int $cat_id, DateTime $start_on = null, DateTime $due_date = null)
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var string
+     */
+    private $category_name;
+
+    public static function create(string $title, string $description, string $location, int $author_id, int $cat_id, string $start_on = null, string $due_date = null):TaskDTO
     {
         $task = new TaskDTO();
 
@@ -59,6 +67,40 @@ class TaskDTO
             ->setCatId($cat_id)
             ->setStartedOn($start_on)
             ->setDueDate($due_date);
+
+        return $task;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param string $username
+     */
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategoryName(): string
+    {
+        return $this->category_name;
+    }
+
+    /**
+     * @param string $category_name
+     */
+    public function setCategoryName(string $category_name): void
+    {
+        $this->category_name = $category_name;
     }
 
 
@@ -195,18 +237,18 @@ class TaskDTO
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getStartedOn(): DateTime
+    public function getStartedOn(): string
     {
         return $this->startedOn;
     }
 
     /**
-     * @param DateTime $startedOn
+     * @param string $startedOn
      * @return TaskDTO
      */
-    public function setStartedOn(DateTime $startedOn): TaskDTO
+    public function setStartedOn(string $startedOn): TaskDTO
     {
         $this->startedOn = $startedOn;
 
@@ -214,18 +256,18 @@ class TaskDTO
     }
 
     /**
-     * @return DateTime
+     * @return string
      */
-    public function getDueDate(): DateTime
+    public function getDueDate(): string
     {
         return $this->dueDate;
     }
 
     /**
-     * @param DateTime $dueDate
+     * @param string $dueDate
      * @return TaskDTO
      */
-    public function setDueDate(DateTime $dueDate): TaskDTO
+    public function setDueDate(string $dueDate): TaskDTO
     {
         $this->dueDate = $dueDate;
         return $this;
