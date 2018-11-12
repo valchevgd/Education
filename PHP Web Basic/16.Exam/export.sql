@@ -1,0 +1,45 @@
+
+CREATE DATABASE IF NOT EXISTS `softuni_library`;
+USE `softuni_library`;
+
+CREATE TABLE IF NOT EXISTS `genres` (
+  `GENRE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(50) NOT NULL,
+  PRIMARY KEY (`GENRE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+INSERT INTO `genres` (`GENRE_ID`, `NAME`) VALUES
+	(1, 'Drama'),
+	(2, 'Educational'),
+	(3, 'Adventure');
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  `FULL_NAME` varchar(255) NOT NULL,
+  `BORN_ON` varchar(50) NOT NULL,
+  PRIMARY KEY (`USER_ID`),
+  UNIQUE KEY `username` (`USERNAME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `books` (
+  `BOOK_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TITLE` varchar(50) NOT NULL,
+  `AUTHOR` varchar(50) NOT NULL,
+  `DESCRIPTION` text NOT NULL,
+  `IMAGE` varchar(255) NOT NULL,
+  `GENRE_ID` int(11) NOT NULL,
+  `USER_ID` int(11) NOT NULL,
+  `ADDED_OD` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`BOOK_ID`),
+  KEY `FK_books_genres` (`GENRE_ID`),
+  KEY `FK_books_users` (`USER_ID`),
+  CONSTRAINT `FK_books_genres` FOREIGN KEY (`GENRE_ID`) REFERENCES `genres` (`GENRE_ID`),
+  CONSTRAINT `FK_books_users` FOREIGN KEY (`USER_ID`) REFERENCES `users` (`USER_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
