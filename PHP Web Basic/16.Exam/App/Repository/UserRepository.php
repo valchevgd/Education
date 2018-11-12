@@ -51,4 +51,13 @@ class UserRepository implements UserRepositoryInterface
             ->current();
     }
 
+    public function delete(int $id): bool
+    {
+        $this->db->query("
+        DELETE FROM users
+        WHERE user_id = ?")
+            ->execute([$id]);
+
+        return true;
+    }
 }

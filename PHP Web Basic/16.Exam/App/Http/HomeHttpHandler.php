@@ -22,10 +22,5 @@ class HomeHttpHandler extends HttpHandlerAbstract
 
     }
 
-    public function success()
-    {
-        $this->template->render('home/success');
-    }
-
 
 }

@@ -56,4 +56,8 @@ class BookService implements BookServiceInterface
         return $this->bookRepository->drop($book_id);
     }
 
+    public function deleteBooksByUser(int $id): bool
+    {
+        return $this->bookRepository->deleteByUser($id);
+    }
 }

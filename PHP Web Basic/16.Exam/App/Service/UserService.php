@@ -52,7 +52,7 @@ class UserService implements UserServiceInterface
             throw new \Exception('Wrong username or password');
         }
 
-        if (!password_verify($password, $user->getPassword())){
+        if (!$this->pass_verify($user->getId(), $password)){
             throw new \Exception('Wrong username or password');
         }
 
@@ -66,4 +66,25 @@ class UserService implements UserServiceInterface
         return $this->userRepository->findOneById($user_id);
     }
 
+    public function delete(int $id, string $password): bool
+    {
+        if($this->pass_verify($id, $password)){
+            return $this->userRepository->delete($id);
+        }else {
+            throw new \Exception('Wrong password!');
+        }
+    }
+
+    /**
+     * @param int $id
+     * @param string $password
+     * @return bool
+     * @throws \Exception
+     */
+    public function pass_verify(int $id, string $password): bool
+    {
+        $user = $this->userRepository->findOneById($id);
+
+        return password_verify($password, $user->getPassword());
+    }
 }

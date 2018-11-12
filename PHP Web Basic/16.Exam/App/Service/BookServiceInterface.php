@@ -27,5 +27,5 @@ interface BookServiceInterface
 
     public function deleteBook(int $book_id):bool;
 
-
+    public function deleteBooksByUser(int $id):bool;
 }

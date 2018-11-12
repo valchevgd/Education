@@ -105,4 +105,12 @@ class BookRepository implements BookRepositoryInterface
         return true;
     }
 
+    public function deleteByUser(int $id): bool
+    {
+        $this->db->query("DELETE FROM books
+                                WHERE USER_ID = ?
+                                ")->execute([$id]);
+
+        return true;
+    }
 }

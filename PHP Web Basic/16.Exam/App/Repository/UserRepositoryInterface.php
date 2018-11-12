@@ -12,4 +12,5 @@ interface UserRepositoryInterface
 
     public function findOneById(int $user_id):UserDTO;
 
+    public function delete(int $id):bool;
 }

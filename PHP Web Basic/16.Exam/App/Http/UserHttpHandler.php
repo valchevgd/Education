@@ -75,9 +75,36 @@ class UserHttpHandler extends HttpHandlerAbstract
             session_destroy();
             $this->redirect("index.php");
         } elseif (isset($form_data['no'])) {
-            $this->redirect("index.php");
+            $this->redirect("profile.php");
         } else {
             $this->template->render("user/logout");
+        }
+    }
+
+    public function delete(\App\Service\BookService $bookService, UserService $userService, array $form_data)
+    {
+        $user = $userService->getCurrentUser($_SESSION['id']);
+
+        if (isset($form_data['yes'])) {
+            try {
+                if ($userService->pass_verify($_SESSION['id'], $form_data['password'])) {
+                    if ($bookService->deleteBooksByUser($_SESSION['id'])) {
+                        if($userService->delete($_SESSION['id'], $form_data['password'])){
+                            session_destroy();
+                            $this->redirect("index.php");
+                        }
+                    }
+
+                }
+            } catch (\Exception $e) {
+                echo '<p style="color: red">' . $e->getMessage() . '<p/>';
+                $this->template->render("user/delete", $user);
+            }
+
+        } elseif (isset($form_data['no'])) {
+            $this->redirect("profile.php");
+        } else {
+            $this->template->render("user/delete", $user);
         }
     }
 

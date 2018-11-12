@@ -113,10 +113,10 @@ class BookHttpHandler extends HttpHandlerAbstract
                 }
             }else{
                 echo "<p style='color: red'>Wrong password!<p/>";
-                $this->template->render("book/delete", $bookService->findBookById($_GET['book_id']));
+                $this->template->render("book/delete_book", $bookService->findBookById($_GET['book_id']));
             }
         }else{
-            $this->template->render("book/delete", $bookService->findBookById($_GET['book_id']));
+            $this->template->render("book/delete_book", $bookService->findBookById($_GET['book_id']));
         }
     }
 }

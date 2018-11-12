@@ -15,4 +15,6 @@ interface UserServiceInterface
 
     public function getCurrentUser(int $user_id):UserDTO;
 
+    public function delete(int $id, string $password):bool;
+
 }

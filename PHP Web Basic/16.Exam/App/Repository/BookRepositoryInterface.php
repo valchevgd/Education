@@ -35,4 +35,6 @@ interface BookRepositoryInterface
 
     public function drop(int $id):bool;
 
+    public function deleteByUser(int $id):bool;
+
 }

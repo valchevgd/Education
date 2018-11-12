@@ -13,7 +13,7 @@
     </label><br/>
     <label>
         Description:
-        <textarea name="description"><?= $data->getDescription()?>"</textarea>
+        <textarea name="description"><?= $data->getDescription()?></textarea>
     </label><br/>
     <label>
         Image URL:
@@ -33,5 +33,5 @@
     <img src="<?= $data->getImage()?>">
     <br/>
     <input type="submit" value="Edit" name="edit">
-    <a href="profile.php">Cancel</a>
+    <a href="my_books.php">Cancel</a>
 </form>
