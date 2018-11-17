@@ -3,10 +3,14 @@
 namespace Controllers;
 
 
+use DTO\UserViewModel;
+use ViewEngine\ViewInterface;
+
 class Users
 {
-    public function hello(string $firstName, string $lastName)
+    public function hello(string $firstName, string $lastName, ViewInterface $view)
     {
-        echo "Hello Mr/Ms $firstName $lastName";
+        $viewModel = new UserViewModel($firstName, $lastName);
+        $view->render($viewModel);
     }
 }

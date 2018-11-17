@@ -12,7 +12,7 @@ $params = explode('/', $uri);
 $controllerName = array_shift($params);
 $actionName = array_shift($params);
 
-$controllerFullQualifiedName = "Controllers\\".ucfirst($controllerName);
-$controller = new $controllerFullQualifiedName;
+$mvcContext = new \Core\Mvc\MvcContext($controllerName, $actionName, $params);
+$app = new \Core\Application($mvcContext);
 
-call_user_func_array([$controller, $actionName], $params);
+$app->start();
