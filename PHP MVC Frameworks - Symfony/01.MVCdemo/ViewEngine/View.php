@@ -2,7 +2,7 @@
 
 namespace ViewEngine;
 
-use Core\Mvc\MvcContext;
+use Core\Mvc\MvcContextInterface;
 
 class View implements ViewInterface
 {
@@ -11,14 +11,14 @@ class View implements ViewInterface
 
     private $mvcContext;
 
-    public function __construct(MvcContext $mvcContext)
+    public function __construct(MvcContextInterface $mvcContext)
     {
         $this->mvcContext = $mvcContext;
     }
 
     public function render($model = null, $viewName = null)
     {
-        if ($model != null){
+        if ($viewName != null){
             if (strstr($viewName, '.')){
                 include self::TEMPLATES_FOLDER.$viewName;
             }else{

@@ -15,4 +15,5 @@ $actionName = array_shift($params);
 $mvcContext = new \Core\Mvc\MvcContext($controllerName, $actionName, $params);
 $app = new \Core\Application($mvcContext);
 
+$app->registerDependency(\ViewEngine\ViewInterface::class, \ViewEngine\View::class);
 $app->start();
