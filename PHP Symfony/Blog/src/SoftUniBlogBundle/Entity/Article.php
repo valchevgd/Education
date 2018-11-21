@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use SoftUniBlogBundle\SoftUniBlogBundle;
 
 /**
- * Article
+ * ArticleType
  *
  * @ORM\Table(name="articles")
  * @ORM\Entity(repositoryClass="SoftUniBlogBundle\Repository\ArticleRepository")
@@ -62,6 +62,12 @@ class Article
      * @ORM\JoinColumn(name="authorId", referencedColumnName="id")
      */
     private $author;
+
+
+    public function __construct()
+    {
+        $this->dateAdded = new \DateTime('now');
+    }
 
     /**
      * @return \SoftUniBlogBundle\Entity\User

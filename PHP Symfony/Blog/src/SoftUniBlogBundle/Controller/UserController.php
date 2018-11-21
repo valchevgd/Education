@@ -12,7 +12,7 @@ class UserController extends Controller
 {
 
     /**
-     * @Route("register")
+     * @Route("register", name="user_register")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
