@@ -3,6 +3,8 @@
 namespace SoftUniBlogBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use SoftUniBlogBundle\Entity\Article;
+use SoftUniBlogBundle\Entity\Role;
 use SoftUniBlogBundle\Entity\User;
 use SoftUniBlogBundle\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,6 +31,10 @@ class UserController extends Controller
 
             $user->setPassword($password);
 
+            $roleRepository = $this->getDoctrine()->getRepository(Role::class);
+            $userRole = $roleRepository->findOneBy(['name' => 'ROLE_USER']);
+            $user->addRole($userRole);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -37,5 +43,17 @@ class UserController extends Controller
         }
 
         return $this->render("default/register.html.twig");
+    }
+
+    /**
+     * @Route("profile", name="user_profile")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function profile()
+    {
+        $id = $this->getUser()->getId();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['authorId' => $id]);
+
+        return $this->render('user_profile.html.twig', ['articles' => $articles]);
     }
 }

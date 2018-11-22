@@ -16,7 +16,7 @@ class ArticleController extends Controller
      * @param Request $request
      *
      * @Route("/article/create", name="article_create")
-     * @Security("is_granted('IIS_AUTHENTICATED_FULLY')")
+     *
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -56,7 +56,7 @@ class ArticleController extends Controller
 
     /**
      * @Route("/article/edit/{id}", name="article_edit")
-     * @Security("is_granted('IIS_AUTHENTICATED_FULLY')")
+     *
      *
      *
      * @param $id
@@ -69,6 +69,12 @@ class ArticleController extends Controller
 
         if ($article === null){
             return $this->redirectToRoute('blog_index');
+        }
+
+        $currentUser = $this->getUser();
+
+        if (!$currentUser->isAuthor($article) and !$currentUser->isAdmin()){
+            return $this->redirectToRoute("blog_index");
         }
 
         $form = $this->createForm(ArticleType::class, $article);
@@ -92,7 +98,7 @@ class ArticleController extends Controller
 
     /**
      * @Route("/article/delete/{id}", name="article_delete")
-     * @Security("is_granted('IIS_AUTHENTICATED_FULLY')")
+     *
      *
      * @param $id
      * @param Request $request
@@ -104,6 +110,12 @@ class ArticleController extends Controller
 
         if ($article === null){
             $this->redirectToRoute("blog_index");
+        }
+
+        $currentUser = $this->getUser();
+
+        if (!$currentUser->isAuthor($article) and !$currentUser->isAdmin()){
+            return $this->redirectToRoute("blog_index");
         }
 
         $form = $this->createForm(ArticleType::class, $article);
