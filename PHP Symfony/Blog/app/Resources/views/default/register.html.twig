@@ -2,6 +2,12 @@
 
 {% block main %}
 
+    {% for msg in app.session.flashBag.get('message') %}
+    <div class="alert alert-danger">
+        {{ msg }}
+    </div>
+    {% endfor %}
+
 <form method="post" name="register">
     <label>
         Email :

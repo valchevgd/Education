@@ -25,7 +25,14 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()){
-            var_dump($user);
+
+            $userByEmail = $this->getDoctrine()->getRepository(User::class)->findBy(['email' => $form->getData()->getEmail()]);
+
+            if ($userByEmail){
+                $this->addFlash('message','Already register user with email '.$form->getData()->getEmail());
+                return $this->render("default/register.html.twig");
+            }
+
             $password = $this->get('security.password_encoder')
                 ->encodePassword($user, $user->getPassword());
 
@@ -54,6 +61,6 @@ class UserController extends Controller
         $id = $this->getUser()->getId();
         $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['authorId' => $id]);
 
-        return $this->render('user_profile.html.twig', ['articles' => $articles]);
+        return $this->render('profile.html.twig', ['articles' => $articles]);
     }
 }

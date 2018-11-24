@@ -16,7 +16,7 @@ class ArticleController extends Controller
      * @param Request $request
      *
      * @Route("/article/create", name="article_create")
-     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
@@ -43,8 +43,8 @@ class ArticleController extends Controller
 
     /**
      * @Route("/article/{id}", name="article_view")
-     * @param $id
      *
+     * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewArticle($id)
@@ -56,8 +56,7 @@ class ArticleController extends Controller
 
     /**
      * @Route("/article/edit/{id}", name="article_edit")
-     *
-     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @param $id
      * @param Request $request
@@ -98,7 +97,7 @@ class ArticleController extends Controller
 
     /**
      * @Route("/article/delete/{id}", name="article_delete")
-     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      *
      * @param $id
      * @param Request $request
