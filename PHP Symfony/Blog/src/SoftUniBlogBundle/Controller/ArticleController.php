@@ -134,4 +134,16 @@ class ArticleController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    /**
+     * @Route("/articles/my_articles", name="my_articles")
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myArticles()
+    {
+        $id = $this->getUser()->getId();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['authorId' => $id]);
+
+        return $this->render('article/my_articles.html.twig', ['articles' => $articles]);
+    }
 }

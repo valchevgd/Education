@@ -52,15 +52,5 @@ class UserController extends Controller
         return $this->render("default/register.html.twig");
     }
 
-    /**
-     * @Route("profile", name="user_profile")
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function profile()
-    {
-        $id = $this->getUser()->getId();
-        $articles = $this->getDoctrine()->getRepository(Article::class)->findBy(['authorId' => $id]);
 
-        return $this->render('profile.html.twig', ['articles' => $articles]);
-    }
 }

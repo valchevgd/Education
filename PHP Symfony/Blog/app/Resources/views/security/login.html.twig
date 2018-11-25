@@ -4,13 +4,13 @@
 
 <form name="authenticate" action="{{ path('security_login') }}" method="post">
     <label>
-        Email :
+        Email :<br/>
         <input type="text" name="_username"/>
-    </label>
+    </label><br/>
     <label>
-        Password:
+        Password:<br/>
         <input type="password" name="_password"/>
-    </label>
+    </label><br/>
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
     <input type="submit" value="Login">
 </form>
