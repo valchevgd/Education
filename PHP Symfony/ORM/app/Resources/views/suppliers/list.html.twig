@@ -1,0 +1,14 @@
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Number of parts</th>
+    </tr>
+    {% for supplier in suppliers %}
+    <tr>
+        <td>{{ supplier.id }}</td>
+        <td>{{ supplier.name }}</td>
+        <td>{{ supplier.parts }}</td>
+    </tr>
+    {% endfor %}
+</table>
