@@ -37,9 +37,9 @@ class Car
     private $model;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="travelled_distance", type="integer")
+     * @ORM\Column(name="travelled_distance", type="bigint")
      */
     private $travelledDistance;
 

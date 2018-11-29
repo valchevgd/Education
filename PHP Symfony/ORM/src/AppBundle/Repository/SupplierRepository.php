@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+
+use AppBundle\Entity\Parts;
+
 /**
  * SupplierRepository
  *
@@ -10,4 +13,19 @@ namespace AppBundle\Repository;
  */
 class SupplierRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getList($name)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('s.id', 's.name', 'count(p.supplierId) as parts')
+            ->from('AppBundle:Supplier','s')
+            ->leftJoin('s.parts', 'p')
+            ->where('p.supplierId = s.id')
+            ->where('s.isImporter = :name')
+            ->groupBy('p.supplierId')
+        ->setParameter('name', $name)
+        ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
+
 }

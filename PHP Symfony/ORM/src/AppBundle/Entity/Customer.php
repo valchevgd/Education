@@ -34,14 +34,14 @@ class Customer
      *
      * @ORM\Column(name="birth_day", type="datetime")
      */
-    private $birthDay;
+    private $birth_day;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="is_young_driver", type="boolean")
      */
-    private $isYoungDriver;
+    private $is_young_driver;
 
     /**
      * @var ArrayCollection|Sale[]
@@ -115,7 +115,7 @@ class Customer
      */
     public function setBirthDay($birthDay)
     {
-        $this->birthDay = $birthDay;
+        $this->birth_day = $birthDay;
 
         return $this;
     }
@@ -127,7 +127,7 @@ class Customer
      */
     public function getBirthDay()
     {
-        return $this->birthDay;
+        return $this->birth_day;
     }
 
     /**
@@ -139,7 +139,7 @@ class Customer
      */
     public function setIsYoungDriver($isYoungDriver)
     {
-        $this->isYoungDriver = $isYoungDriver;
+        $this->is_young_driver = $isYoungDriver;
 
         return $this;
     }
@@ -151,7 +151,7 @@ class Customer
      */
     public function getIsYoungDriver()
     {
-        return $this->isYoungDriver;
+        return $this->is_young_driver;
     }
 }
 

@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class CarRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param integer $id
+     * @return mixed
+     */
+    public function getCar($id)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('c.make', 'c.model', 'c.travelledDistance', 'p.name', 'p.price')
+            ->from('AppBundle:Car','c')
+            ->innerJoin('c.parts', 'p')
+            ->where('c.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
 }
