@@ -72,4 +72,21 @@ class SaleRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->execute();
     }
+
+    public function getPriceAndDiscount(int $id)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('s.discount', 'sum(p.price) as price')
+            ->from('AppBundle:Sale', 's')
+            ->join('s.customerId', 'cu')
+            ->join('s.carId', 'c')
+            ->join('c.parts', 'p')
+            ->where('cu.id = :id')
+            ->setParameter('id', $id)
+            ->groupBy('s.discount')
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
 }

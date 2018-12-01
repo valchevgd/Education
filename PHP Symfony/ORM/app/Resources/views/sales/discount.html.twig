@@ -4,6 +4,7 @@
         <th>Car Make</th>
         <th>Car Model</th>
         <th>Discount</th>
+        <th>Options</th>
     </tr>
     {% for sale in sales %}
         <tr>
@@ -11,6 +12,8 @@
             <td>{{ sale.make }}</td>
             <td>{{ sale.model }}</td>
             <td>{{ sale.discount }}</td>
+            <td><a href="{{ path('view_sale', {'id': sale.id}) }}">view</a> </td>
         </tr>
     {% endfor %}
 </table>
+<a href="{{ path('index') }}">Home</a>

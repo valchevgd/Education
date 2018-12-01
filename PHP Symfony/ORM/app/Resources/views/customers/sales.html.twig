@@ -1,2 +1,16 @@
 
-{{ dump(customer) }}
+<table border="1">
+    <tr>
+        <th>Customer name</th>
+        <td>{{ customer.name }}</td>
+    </tr>
+    <tr>
+        <th>Customer sales</th>
+        <td>{{ customer.sales }}</td>
+    </tr>
+    <tr>
+        <th>Spend money</th>
+        <td>{{ price }}</td>
+    </tr>
+</table>
+<a href="{{ path('all_customers', {'param':'ascending'}) }}">All customers</a><br/>

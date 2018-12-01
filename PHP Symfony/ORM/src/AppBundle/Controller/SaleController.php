@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SaleController extends Controller
 {
     /**
-     * @Route("/sales")
+     * @Route("/sales", name="all_sales")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function allSalesAction()
@@ -26,7 +26,7 @@ class SaleController extends Controller
     }
 
     /**
-     * @Route("/sale/{id}")
+     * @Route("/sale/{id}", name="view_sale")
      *
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
@@ -47,7 +47,7 @@ class SaleController extends Controller
     }
 
     /**
-     * @Route("sales/discounted")
+     * @Route("sales/discounted", name="discounted_sales")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -63,7 +63,7 @@ class SaleController extends Controller
     }
 
     /**
-     * @Route("/sales/discounted/{percent}")
+     * @Route("/sales/discounted/{percent}", name="percent_discounted")
      *
      * @param float $percent
      *

@@ -10,23 +10,18 @@ namespace AppBundle\Repository;
  */
 class CustomerRepository extends \Doctrine\ORM\EntityRepository
 {
-    /**
-     * @param $id
-     * @return mixed
-     */
+
     public function getCustomerSales($id)
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('cm.name', 'count(s.id) as sales', 's.discount', 'sum(p.price)')
-            ->from('AppBundle:Customer', 'cm')
-            ->join('cm.sales', 's')
-            ->join('s.carId', 'c')
-            ->join('c.parts', 'p')
-            ->where('cm.id = :id')
+        $qb->select('c.name','count(s.id) as sales')
+            ->from('AppBundle:Customer', 'c')
+            ->join('c.sales', 's')
+            ->where('c.id = :id')
             ->setParameter('id', $id)
-            ->getQuery();
+            ->getQuery()->getOneOrNullResult();
 
-        return $qb->getQuery()->execute();
+        return $qb->getQuery()->getOneOrNullResult();
     }
 }

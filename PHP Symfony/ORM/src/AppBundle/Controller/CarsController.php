@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarsController extends Controller
 {
     /**
-     * @Route("/cars/{make}")
+     * @Route("/cars/{make}", name="car_make")
      *
      * @param $make
      * @return \Symfony\Component\HttpFoundation\Response
@@ -27,7 +27,7 @@ class CarsController extends Controller
     }
 
     /**
-     * @Route("/cars/{id}/parts")
+     * @Route("/cars/{id}/parts", name="car_parts")
      *
      * @param integer $id
      * @return Response
@@ -35,12 +35,27 @@ class CarsController extends Controller
     public function carPartsAction($id)
     {
         $car = $this->getDoctrine()
-            ->getManager()
             ->getRepository(Car::class)
             ->getCar($id);
 
         return $this->render('car/view.html.twig', [
             'car' => $car,
         ]);
+    }
+
+    /**
+     * @Route("/all/cars", name="all_cars")
+     *
+     * @return Response
+     */
+    public function viewAllCarsAction()
+    {
+        $cars = $this->getDoctrine()
+            ->getRepository(Car::class)
+            ->findAll();
+
+        return $this->render('cars/make.html.twig', [
+            'cars' => $cars
+            ]);
     }
 }

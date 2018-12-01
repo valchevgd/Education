@@ -10,10 +10,7 @@ namespace AppBundle\Repository;
  */
 class CarRepository extends \Doctrine\ORM\EntityRepository
 {
-    /**
-     * @param integer $id
-     * @return mixed
-     */
+
     public function getCar($id)
     {
         $qb = $this->_em->createQueryBuilder();

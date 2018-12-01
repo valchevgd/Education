@@ -3,6 +3,7 @@
         <th>Name</th>
         <th>Birth date</th>
         <th>Is young driver</th>
+        <th colspan="2">Options</th>
     </tr>
     {% for customer in customers %}
         <tr>
@@ -13,6 +14,9 @@
                 {% else %}
                     true
                 {% endif %}</td>
+            <td><a href="{{ path('view_customer', {'id': customer.id}) }}">view</a> </td>
+            <td><a href="{{ path('edit_customer', {'id': customer.id}) }}">edit</a> </td>
         </tr>
     {% endfor %}
 </table>
+<a href="{{ path('index') }}">Home</a>

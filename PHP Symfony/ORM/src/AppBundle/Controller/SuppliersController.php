@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SuppliersController extends Controller
 {
     /**
-     * @Route("/suppliers/{name}")
+     * @Route("/suppliers/{name}", name="view_suppliers")
      *
      * @param $name
      * @return \Symfony\Component\HttpFoundation\Response

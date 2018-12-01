@@ -10,6 +10,8 @@
             <td>{{ sale.name }}</td>
             <td>{{ sale.make }}</td>
             <td>{{ sale.model }}</td>
+            <td><a href="{{ path('view_sale', {'id': sale.id}) }}">view</a> </td>
         </tr>
     {% endfor %}
 </table>
+<a href="{{ path('index') }}">Home</a>
