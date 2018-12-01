@@ -18,12 +18,11 @@ class CustomerRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
 
-        $qb->select('cm.name', 'sum(s.customerId) as sales', 's.discount', 'sum(p.price)')
+        $qb->select('cm.name', 'count(s.id) as sales', 's.discount', 'sum(p.price)')
             ->from('AppBundle:Customer', 'cm')
             ->join('cm.sales', 's')
             ->join('s.carId', 'c')
             ->join('c.parts', 'p')
-            ->groupBy('s.customerId')
             ->where('cm.id = :id')
             ->setParameter('id', $id)
             ->getQuery();

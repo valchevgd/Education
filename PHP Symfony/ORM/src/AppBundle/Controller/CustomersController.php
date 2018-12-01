@@ -46,6 +46,7 @@ class CustomersController extends Controller
             ->getRepository(Customer::class)
             ->getCustomerSales($id);
 
+
         return $this->render('customers/sales.html.twig',[
             'customer' => $customer
         ]);

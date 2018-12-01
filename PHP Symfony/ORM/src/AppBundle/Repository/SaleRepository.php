@@ -10,4 +10,66 @@ namespace AppBundle\Repository;
  */
 class SaleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function salesList()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('cu.name', 'ca.make', 'ca.model', 's.id')
+            ->from('AppBundle:Sale', 's')
+            ->join('s.carId', 'ca')
+            ->join('s.customerId', 'cu')
+            ->orderBy('cu.name')
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function findSale(int $id)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('cu.name', 'ca.make', 'ca.model', 's.id', 'sum(p.price) as price', 's.discount')
+            ->from('AppBundle:Sale', 's')
+            ->join('s.carId', 'ca')
+            ->join('s.customerId', 'cu')
+            ->join('ca.parts', 'p')
+            ->where('s.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('cu.name')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function salesWithDiscount()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('cu.name', 'ca.make', 'ca.model', 's.id', 's.discount')
+            ->from('AppBundle:Sale', 's')
+            ->join('s.carId', 'ca')
+            ->join('s.customerId', 'cu')
+            ->where('s.discount > 0')
+            ->orderBy('s.discount')
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function salesWithPercentDiscount(float $percent)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('cu.name', 'ca.make', 'ca.model', 's.id', 's.discount')
+            ->from('AppBundle:Sale', 's')
+            ->join('s.carId', 'ca')
+            ->join('s.customerId', 'cu')
+            ->where('s.discount = :percent')
+            ->setParameter('percent', $percent)
+            ->orderBy('s.discount')
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
 }
