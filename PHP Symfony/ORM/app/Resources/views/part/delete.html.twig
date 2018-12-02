@@ -1,0 +1,17 @@
+<table border="1">
+    <tr>
+        <th>Part name</th>
+        <td>{{ part.name }}</td>
+    </tr>
+    <tr>
+        <th>Part supplier</th>
+        <td>{{ part.supplier }}</td>
+    </tr>
+    <tr>
+        <th>Part price</th>
+        <td>{{ part.price }}</td>
+    </tr>
+</table>
+{{ form(form) }}
+
+<a href="{{ path('all_parts') }}">Back</a>

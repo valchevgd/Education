@@ -47,7 +47,10 @@ class Car
     /**
      * @var ArrayCollection|Part[]
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Part", mappedBy="cars")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Part", inversedBy="cars")
+     * @ORM\JoinTable(name="cars_parts",
+     *     joinColumns={@ORM\JoinColumn(name="car_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="part_id", referencedColumnName="id")})
      */
     private $parts;
 

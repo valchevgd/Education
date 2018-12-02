@@ -13,7 +13,7 @@ class SaleController extends Controller
      * @Route("/sales", name="all_sales")
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function allSalesAction()
+    public function listAction()
     {
         $sales = $this->getDoctrine()
             ->getRepository(Sale::class)

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
+
 /**
  * CarRepository
  *
@@ -23,4 +25,5 @@ class CarRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb->getQuery()->execute();
     }
+
 }

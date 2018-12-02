@@ -10,4 +10,32 @@ namespace AppBundle\Repository;
  */
 class PartRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p.id','p.name', 'p.price', 's.name as supplier', 'p.quantity')
+            ->from('AppBundle:Part', 'p')
+            ->join('p.supplierId','s')
+            ->orderBy('p.name')
+            ->getQuery();
+
+        return $qb->getQuery()->execute();
+    }
+
+    public function findPart(int $id)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p.id','p.name', 'p.price', 's.name as supplier', 'p.quantity')
+            ->from('AppBundle:Part', 'p')
+            ->join('p.supplierId','s')
+            ->where('p.id = :id')
+            ->setParameter('id', $id)
+            ->orderBy('p.name')
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }

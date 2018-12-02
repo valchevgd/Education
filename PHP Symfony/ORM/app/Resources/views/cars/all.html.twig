@@ -3,12 +3,16 @@
         <th>Make</th>
         <th>Model</th>
         <th>Travelled Distance</th>
+        <th colspan="3">Options</th>
     </tr>
     {% for car in cars %}
     <tr>
         <td>{{ car.make }}</td>
         <td>{{ car.model }}</td>
         <td>{{ car.travelledDistance }}</td>
+        <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a> </td>
+        <td><a href="{{ path('edit_car', {'id':car.id}) }}">Edit</a> </td>
+        <td><a href="{{ path('delete_car', {'id':car.id}) }}">Delete</a> </td>
     </tr>
     {% endfor %}
 </table>

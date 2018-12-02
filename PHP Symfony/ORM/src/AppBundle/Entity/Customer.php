@@ -46,7 +46,7 @@ class Customer
     /**
      * @var ArrayCollection|Sale[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Sale", mappedBy="customerId")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Sale", mappedBy="customerId", cascade={"remove"})
      *
      */
     private $sales;

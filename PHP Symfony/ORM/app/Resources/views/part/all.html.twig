@@ -1,0 +1,22 @@
+<table border="1">
+    <tr>
+        <th>Part name</th>
+        <th>Part price</th>
+        <th>Part quantity</th>
+        <th>Part supplier</th>
+        <th colspan="2">Options</th>
+    </tr>
+    {% for part in parts %}
+    <tr>
+        <td>{{ part.name }}</td>
+        <td>{{ part.price }}</td>
+        <td>{{ part.quantity }}</td>
+        <td>{{ part.supplier }}</td>
+        <td><a href="{{ path('edit_part', {'id':part.id}) }}">edit</a> </td>
+        <td><a href="{{ path('delete_part', {'id':part.id}) }}">delete</a> </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<a href="{{ path('index') }}">Home</a>

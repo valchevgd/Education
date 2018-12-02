@@ -15,9 +15,10 @@
     <tr>
         <th>Parts</th>
         <td>{% for car in car %}
-        {{ car.name }} : ${{ car.price }}<br/>
+                {{ car.name }} : ${{ car.price }}<br/>
             {% endfor %}
         </td>
     </tr>
 </table>
+{{ form(form) }}
 <a href="{{ path('all_cars') }}">Back</a>
