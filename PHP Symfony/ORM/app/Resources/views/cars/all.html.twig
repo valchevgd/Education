@@ -1,8 +1,7 @@
 {% extends 'base.htm.twig' %}
 
 {% block main %}
-<div class="container body-content">
-    <div class="col-md-8">
+    <div class="table-container">
         <table border="1" class="table">
             <thead class="thead-dark">
             <tr>
@@ -23,7 +22,4 @@
             {% endfor %}
         </table>
     </div>
-</div>
-<a href="{{ path('index') }}">Home</a>
-
 {% endblock %}

@@ -1,24 +1,29 @@
+{% extends 'base.htm.twig' %}
 
-<table border="1">
-    <tr>
-        <th>Make</th>
-        <td>{{ car[0].make }}</td>
-    </tr>
-    <tr>
-        <th>Model</th>
-        <td>{{ car[0].model }}</td>
-    </tr>
-    <tr>
-        <th>Travelled Distance</th>
-        <td>{{ car[0].travelledDistance }}</td>
-    </tr>
-    <tr>
-        <th>Parts</th>
-        <td>{% for car in car %}
-                {{ car.name }} : ${{ car.price }}<br/>
-            {% endfor %}
-        </td>
-    </tr>
-</table>
-{{ form(form) }}
-<a href="{{ path('all_cars') }}">Back</a>
+{% block main %}
+    <div class="table-container">
+        <table border="1" class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Make</th>
+                <td>{{ car[0].make }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car[0].model }}</td>
+            </tr>
+            <tr>
+                <th>Travelled Distance</th>
+                <td>{{ car[0].travelledDistance }}</td>
+            </tr>
+            <tr>
+                <th>Parts</th>
+                <td>{% for car in car %}
+                        {{ car.name }} : ${{ car.price }}<br/>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    </div>
+    {{ form(form) }}
+{% endblock %}

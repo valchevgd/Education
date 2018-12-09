@@ -1,5 +1,9 @@
+{% extends 'base.htm.twig' %}
 
-<table border="1">
+{% block main %}
+<div class="table-container">
+    <table border="1" class="table">
+        <thead class="thead-dark">
     <tr>
         <th>Make</th>
         <td>{{ car[0].make }}</td>
@@ -20,4 +24,5 @@
         </td>
     </tr>
 </table>
-<a href="{{ path('all_cars') }}">Back</a>
+</div>
+{% endblock %}

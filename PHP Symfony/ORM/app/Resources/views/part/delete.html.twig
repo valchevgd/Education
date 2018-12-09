@@ -1,17 +1,22 @@
-<table border="1">
-    <tr>
-        <th>Part name</th>
-        <td>{{ part.name }}</td>
-    </tr>
-    <tr>
-        <th>Part supplier</th>
-        <td>{{ part.supplier }}</td>
-    </tr>
-    <tr>
-        <th>Part price</th>
-        <td>{{ part.price }}</td>
-    </tr>
-</table>
-{{ form(form) }}
+{% extends 'base.htm.twig' %}
 
-<a href="{{ path('all_parts') }}">Back</a>
+{% block main %}
+    <div class="table-container">
+        <table border="1" class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Part name</th>
+                <td>{{ part.name }}</td>
+            </tr>
+            <tr>
+                <th>Part supplier</th>
+                <td>{{ part.supplier }}</td>
+            </tr>
+            <tr>
+                <th>Part price</th>
+                <td>{{ part.price }}</td>
+            </tr>
+        </table>
+    </div>
+    {{ form(form) }}
+{% endblock %}

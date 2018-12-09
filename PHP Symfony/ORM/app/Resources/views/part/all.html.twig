@@ -1,22 +1,26 @@
-<table border="1">
-    <tr>
-        <th>Part name</th>
-        <th>Part price</th>
-        <th>Part quantity</th>
-        <th>Part supplier</th>
-        <th colspan="2">Options</th>
-    </tr>
-    {% for part in parts %}
-    <tr>
-        <td>{{ part.name }}</td>
-        <td>{{ part.price }}</td>
-        <td>{{ part.quantity }}</td>
-        <td>{{ part.supplier }}</td>
-        <td><a href="{{ path('edit_part', {'id':part.id}) }}">edit</a> </td>
-        <td><a href="{{ path('delete_part', {'id':part.id}) }}">delete</a> </td>
-    </tr>
-    {% endfor %}
-</table>
+{% extends 'base.htm.twig' %}
 
-
-<a href="{{ path('index') }}">Home</a>
+{% block main %}
+<div class="table-container">
+    <table border="1" class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Part name</th>
+            <th>Part price</th>
+            <th>Part quantity</th>
+            <th>Part supplier</th>
+            <th colspan="2">Options</th>
+        </tr>
+        {% for part in parts %}
+            <tr>
+                <td>{{ part.name }}</td>
+                <td>{{ part.price }}</td>
+                <td>{{ part.quantity }}</td>
+                <td>{{ part.supplier }}</td>
+                <td><a href="{{ path('edit_part', {'id':part.id}) }}">Edit</a></td>
+                <td><a href="{{ path('delete_part', {'id':part.id}) }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

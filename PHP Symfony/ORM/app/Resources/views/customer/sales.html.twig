@@ -1,16 +1,21 @@
+{% extends 'base.htm.twig' %}
 
-<table border="1">
-    <tr>
-        <th>Customer name</th>
-        <td>{{ customer.name }}</td>
-    </tr>
-    <tr>
-        <th>Customer sales</th>
-        <td>{{ customer.sales }}</td>
-    </tr>
-    <tr>
-        <th>Spend money</th>
-        <td>{{ price }}</td>
-    </tr>
-</table>
-<a href="{{ path('all_customers', {'param':'ascending'}) }}">All customers</a><br/>
+{% block main %}
+    <div class="table-container">
+        <table border="1" class="table">
+            <thead class="thead-light">
+            <tr>
+                <th>Customer name</th>
+                <td>{{ customer.name }}</td>
+            </tr>
+            <tr>
+                <th>Customer sales</th>
+                <td>{{ customer.sales }}</td>
+            </tr>
+            <tr>
+                <th>Spend money</th>
+                <td>{{ price }}</td>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

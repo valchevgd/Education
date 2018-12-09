@@ -1,15 +1,21 @@
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Number of parts</th>
-    </tr>
-    {% for supplier in suppliers %}
-    <tr>
-        <td>{{ supplier.id }}</td>
-        <td>{{ supplier.name }}</td>
-        <td>{{ supplier.parts }}</td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="{{ path('index') }}">Home</a>
+{% extends 'base.htm.twig' %}
+
+{% block main %}
+    <div class="table-container">
+        <table border="1" class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Number of parts</th>
+            </tr>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.id }}</td>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.parts }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

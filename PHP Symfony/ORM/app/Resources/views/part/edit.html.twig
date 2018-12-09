@@ -1,4 +1,6 @@
-<p>{{ part.name }}</p>
-{{ form(form) }}
+{% extends 'base.htm.twig' %}
 
-<a href="{{ path('all_parts') }}">Back</a>
+{% block main %}
+    <h3>{{ part.name }}</h3>
+    {{ form(form) }}
+{% endblock %}
