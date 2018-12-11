@@ -1,0 +1,39 @@
+{% extends 'index.html.twig' %}
+
+{% block main %}
+    <form method="post" name="index_cars">
+        <div class="form-group">
+            <div class="form-group col-md-3">
+                {{ form_row(form.model) }}
+                <br>
+                {{ form_row(form.show,{'attr':{'class':'btn btn-primary' , 'type':'submit'}}) }}
+            </div>
+        </div>
+    </form>
+
+    {% if cars %}
+        {% for car in cars %}
+            <div class="table-container">
+                <table border="1" class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Make</th>
+                        <td>{{ car.make }}</td>
+                    </tr>
+                    <tr>
+                        <th>Model</th>
+                        <td>{{ car.model }}</td>
+                    </tr>
+                    <tr>
+                        <th>Travelled Distance</th>
+                        <td>{{ car.travelledDistance }}</td>
+                    </tr>
+                    <tr>
+                        <th>Options</th>
+                        <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a></td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

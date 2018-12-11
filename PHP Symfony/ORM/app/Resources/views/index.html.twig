@@ -1,0 +1,10 @@
+{% extends 'base.htm.twig' %}
+
+{% block body %}
+    <a class="btn btn-outline-primary" href="{{ path('index_cars') }}" role="button">Cars</a>
+    <a class="btn btn-outline-primary" href="{{ path('index_parts') }}" role="button">Parts</a>
+    <a class="btn btn-outline-primary" href="{{ path('all_customers', {'param': 'ascending'}) }}" role="button">Customers</a>
+    <a class="btn btn-outline-primary" href="{{ path('all_sales') }}" role="button">Sales</a>
+    {% block main %}{% endblock %}
+{% endblock %}
+
