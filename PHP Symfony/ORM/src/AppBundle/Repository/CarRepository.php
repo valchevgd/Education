@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-use Doctrine\ORM\QueryBuilder;
 
 /**
  * CarRepository
@@ -16,7 +15,7 @@ class CarRepository extends \Doctrine\ORM\EntityRepository
     public function getCar($id)
     {
         $qb = $this->_em->createQueryBuilder();
-        $qb->select('c.make', 'c.model', 'c.travelledDistance', 'p.name', 'p.price')
+        $qb->select('c.id','c.make', 'c.model', 'c.travelledDistance', 'p.name', 'p.price')
             ->from('AppBundle:Car', 'c')
             ->innerJoin('c.parts', 'p')
             ->where('c.id = :id')
@@ -45,6 +44,7 @@ class CarRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('make', $make)
             ->orderBy('c.model', 'ASC')
             ->getQuery();
+
 
         return $qb->getQuery()->execute();
     }

@@ -1,28 +1,30 @@
 {% extends 'base.htm.twig' %}
 
 {% block main %}
-<div class="table-container">
-    <table border="1" class="table">
-        <thead class="thead-dark">
-    <tr>
-        <th>Make</th>
-        <td>{{ car[0].make }}</td>
-    </tr>
-    <tr>
-        <th>Model</th>
-        <td>{{ car[0].model }}</td>
-    </tr>
-    <tr>
-        <th>Travelled Distance</th>
-        <td>{{ car[0].travelledDistance }}</td>
-    </tr>
-    <tr>
-        <th>Parts</th>
-        <td>{% for car in car %}
-        {{ car.name }} : ${{ car.price }}<br/>
-            {% endfor %}
-        </td>
-    </tr>
-</table>
-</div>
+    <div class="table-container">
+        <table border="1" class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Make</th>
+                <td>{{ car[0].make }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ car[0].model }}</td>
+            </tr>
+            <tr>
+                <th>Travelled Distance</th>
+                <td>{{ car[0].travelledDistance }}</td>
+            </tr>
+            <tr>
+                <th>Parts</th>
+                <td>{% for car in car %}
+                        {{ car.name }} : ${{ car.price }}<br/>
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+        <a class="btn btn-primary" href="{{ path('edit_car', {'id':car[0].id}) }}" role="button">Edit</a>
+        <a class="btn btn-primary" href="{{ path('delete_car', {'id':car[0].id}) }}" role="button">Delete</a>
+    </div>
 {% endblock %}

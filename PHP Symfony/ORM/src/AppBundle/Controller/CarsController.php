@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CarsController extends Controller
 {
 
+    const LIMIT = 4;
+
     /**
      * @Route("/car/view/{id}", name="view_car")
      *
@@ -32,16 +34,25 @@ class CarsController extends Controller
 
     /**
      * @Route("/cars/all", name="all_cars")
-     *
+     * @param Request $request
      * @return Response
      */
-    public function listsAction()
+    public function listsAction(Request $request)
     {
         $cars = $this->getDoctrine()
             ->getRepository(Car::class)
             ->findAll();
 
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $cars,
+            $request->query->getInt('page', 1),
+            self::LIMIT/*limit per page*/
+        );
+
         return $this->render('cars/all.html.twig', [
+            'pagination' => $pagination,
             'cars' => $cars
             ]);
     }

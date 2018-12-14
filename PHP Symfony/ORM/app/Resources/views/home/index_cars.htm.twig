@@ -10,30 +10,35 @@
             </div>
         </div>
     </form>
-
     {% if cars %}
-        {% for car in cars %}
-            <div class="table-container">
-                <table border="1" class="table">
-                    <thead class="thead-light">
-                    <tr>
-                        <th>Make</th>
-                        <td>{{ car.make }}</td>
-                    </tr>
-                    <tr>
-                        <th>Model</th>
-                        <td>{{ car.model }}</td>
-                    </tr>
-                    <tr>
-                        <th>Travelled Distance</th>
-                        <td>{{ car.travelledDistance }}</td>
-                    </tr>
-                    <tr>
-                        <th>Options</th>
-                        <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a></td>
-                    </tr>
-                </table>
+        <div class="container body-content">
+            <div class="row">
+                {% for car in cars %}
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <table border="1" class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Make</th>
+                                    <td>{{ car.make }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <td>{{ car.model }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Travelled Distance</th>
+                                    <td>{{ car.travelledDistance }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Options</th>
+                                    <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </div>
     {% endif %}
 {% endblock %}

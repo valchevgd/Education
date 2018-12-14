@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Car;
-use AppBundle\Repository\CarRepository;
+use AppBundle\Entity\Part;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends Controller
 {
+
+    const LIMIT_PARTS = 6;
+
     /**
      * @Route("/", name="index_cars")
      * @param Request $request
@@ -29,20 +32,24 @@ class HomeController extends Controller
                 'query_builder' => $this->getDoctrine()->getRepository(Car::class)->findModels(),
                 'label' => 'Select model',
                 'placeholder' => ''
-                ])
+            ])
             ->add('show', SubmitType::class)
             ->getForm();
 
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()){
+
+        if ($form->isSubmitted()) {
+
             $make = $form->getData()['model']->getMake();
 
             $cars = $this->getDoctrine()
                 ->getRepository(Car::class)
                 ->getCars($make);
+
         }
+
 
         return $this->render('home/index_cars.htm.twig', [
             'cars' => $cars,
@@ -51,16 +58,26 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/pa", name="index_parts")
+     * @Route("/home_parts", name="index_parts")
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexPartsAction()
+    public function indexPartsAction(Request $request)
     {
-        $cars = $this->getDoctrine()->getRepository(Car::class)
-            ->findBy([], ['model' => 'desc'], 10);
+        $parts = $this->getDoctrine()->getRepository(Part::class)
+            ->findAll();
+
+        $paginator = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $parts,
+            $request->query->getInt('page', 1),
+            self::LIMIT_PARTS
+        );
+
 
         return $this->render('home/index_parts.htm.twig', [
-            'cars' => $cars
+            'pagination' => $pagination
         ]);
     }
 }

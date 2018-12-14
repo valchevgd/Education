@@ -1,25 +1,39 @@
 {% extends 'base.htm.twig' %}
 
 {% block main %}
-    <div class="table-container">
-        <table border="1" class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th>Make</th>
-                <th>Model</th>
-                <th>Travelled Distance</th>
-                <th colspan="3">Options</th>
-            </tr>
-            {% for car in cars %}
-                <tr>
-                    <td>{{ car.make }}</td>
-                    <td>{{ car.model }}</td>
-                    <td>{{ car.travelledDistance }}</td>
-                    <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a></td>
-                    <td><a href="{{ path('edit_car', {'id':car.id}) }}">Edit</a></td>
-                    <td><a href="{{ path('delete_car', {'id':car.id}) }}">Delete</a></td>
-                </tr>
-            {% endfor %}
-        </table>
+    <div>
+        <div class="body-content">
+            <div class="row">
+                {% for car in pagination %}
+                    <div class="col-md-6">
+                        <div class="table-container">
+                            <table border="1" class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Make</th>
+                                    <td>{{ car.make }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Model</th>
+                                    <td>{{ car.model }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Travelled Distance</th>
+                                    <td>{{ car.travelledDistance }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Options</th>
+                                    <td><a href="{{ path('view_car', {'id':car.id}) }}">View</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {# display navigation #}
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     </div>
 {% endblock %}
