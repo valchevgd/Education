@@ -1,0 +1,95 @@
+body {
+    background: #F0F1F5;
+    font-family:  “Helvetica”, sans-serif ;
+    padding: 0 200px;
+}
+
+header * {
+    color: #F9690E;
+    font-weight: bold;
+}
+
+header article{
+    float: left;
+    padding: 5px;
+}
+
+header nav{
+    text-align: right;
+}
+
+header nav ul li{
+    display: inline-block;
+    padding: 5px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+}
+
+main section:nth-child(1){
+    background: url("img/picture.jpg") no-repeat;
+    background-size: cover;
+    padding: 10rem;
+    text-align: center;
+}
+
+main section:nth-child(1) h1{
+    color: #F0F1F5;
+    width: 83%;
+    margin: 0 auto;
+}
+
+main section:nth-child(1) h1 span{
+    color: #F9690E;
+}
+
+main section:nth-child(1) button{
+    background: #F9690E;
+    color: #F0F1F5;
+    border: none;
+    padding: 7px;
+    margin-top: 15px;
+}
+
+main section:nth-child(1) button:hover{
+    background: #F0F1F5;
+    color: #F9690E;
+    border: none;
+    padding: 7px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+main section:nth-child(2) article{
+    background: #F9690E;
+    color: #F0F1F5;
+    text-align: center;
+    display: inline-block;
+    width: 33%;
+}
+
+main section:nth-child(2) article p{
+    text-align: left;
+    padding: 0.8rem;
+}
+
+footer{
+    padding: 10px;
+}
+
+footer article:nth-child(1){
+    float: left;
+    padding: 5px;
+    font-weight: bold;
+}
+
+footer article:nth-child(2){
+    text-align: right;
+}
+
+
+footer article a i {
+    padding: 5px;
+    color: black;
+}
