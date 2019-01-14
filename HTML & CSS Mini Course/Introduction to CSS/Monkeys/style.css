@@ -1,0 +1,41 @@
+body{
+    background: #FAEBC8;
+    font-family: 'Open Sans', sans-serif;
+}
+
+section{
+    background: #FFFFFF;
+    border-radius: 20px;
+    margin: 80px 160px 80px 160px;
+    box-shadow: 0 0 35px 3px rgba(0,0,0,0.56);
+    text-align: center;
+}
+
+section article{
+    display: inline-block;
+    width: 19%;
+    padding: 20px;
+    height: 100%;
+    vertical-align: top;
+}
+
+section article p{
+    text-align: left;
+    font-size: 14px;
+}
+
+section article img {
+    width: 60px;
+}
+
+section article p:last-child {
+    color: #965A50;
+    font-style: italic;
+    font-weight: bold;
+    text-shadow: 14px 14px 2px rgba(150, 150, 150, 1);
+
+
+}
+
+
+
