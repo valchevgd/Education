@@ -2,7 +2,7 @@ function solve(dayOfWeek, service, time) {
 
     let price;
 
-    if (time >= 8.00 && time < 15.00) {
+    if (time >= 8.00 && time <= 15.00) {
         if (service === 'Fitness') {
             switch (dayOfWeek) {
                 case 'Monday':
@@ -40,7 +40,7 @@ function solve(dayOfWeek, service, time) {
                     price = 15.00;
             }
         }
-    } else if (time >= 15.00 && time <= 22.00) {
+    } else if (time > 15.00 && time <= 22.00) {
         if (service === 'Fitness') {
             switch (dayOfWeek) {
                 case 'Monday':
