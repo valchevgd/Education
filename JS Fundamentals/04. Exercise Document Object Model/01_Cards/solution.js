@@ -1,5 +1,8 @@
 function solve() {
 
+    let firstPlayerCard;
+    let secondPlayerCard;
+
     let firstPlayerFirstCard = document.querySelector('div#player1Div img:nth-child(1)');
     let firstPlayerSecondCard = document.querySelector('div#player1Div img:nth-child(2)');
     let firstPlayerThirdCard = document.querySelector('div#player1Div img:nth-child(3)');
@@ -21,56 +24,123 @@ function solve() {
 
 
     firstPlayerFirstCard.addEventListener('click', () => {
-        playCard(firstPlayerFirstCard);
+        firstPlayerCard = firstPlayerFirstCard;
+
+        playCard(firstPlayerFirstCard, 'first');
     });
     firstPlayerSecondCard.addEventListener('click', () => {
-        playCard(firstPlayerSecondCard);
+        firstPlayerCard = firstPlayerSecondCard;
+
+        playCard(firstPlayerSecondCard, 'first');
     });
     firstPlayerThirdCard.addEventListener('click', () => {
-        playCard(firstPlayerThirdCard);
+        firstPlayerCard = firstPlayerThirdCard;
+
+        playCard(firstPlayerThirdCard, 'first');
     });
     firstPlayerFourthCard.addEventListener('click', () => {
-        playCard(firstPlayerFourthCard);
+        firstPlayerCard = firstPlayerFourthCard;
+
+        playCard(firstPlayerFourthCard, 'first');
     });
     firstPlayerFifthCard.addEventListener('click', () => {
-        playCard(firstPlayerFifthCard);
+        firstPlayerCard = firstPlayerFifthCard;
+
+        playCard(firstPlayerFifthCard, 'first');
     });
     firstPlayerSixthCard.addEventListener('click', () => {
-        playCard(firstPlayerSixthCard);
+        firstPlayerCard = firstPlayerSixthCard;
+
+        playCard(firstPlayerSixthCard, 'first');
     });
     firstPlayerSeventhCard.addEventListener('click', () => {
-        playCard(firstPlayerSeventhCard);
+        firstPlayerCard = firstPlayerSeventhCard;
+
+        playCard(firstPlayerSeventhCard, 'first');
     });
     firstPlayerEightCard.addEventListener('click', () => {
-        playCard(firstPlayerEightCard);
+        firstPlayerCard = firstPlayerEightCard;
+
+        playCard(firstPlayerEightCard, 'first');
     });
+
 
     secondPlayerFirstCard.addEventListener('click', () => {
-        playCard(secondPlayerFirstCard);
+        secondPlayerCard = secondPlayerFirstCard;
+        playCard(secondPlayerFirstCard, 'second');
     });
     secondPlayerSecondCard.addEventListener('click', () => {
-        playCard(secondPlayerSecondCard);
+        secondPlayerCard = secondPlayerSecondCard;
+        playCard(secondPlayerSecondCard, 'second');
     });
     secondPlayerThirdCard.addEventListener('click', () => {
-        playCard(secondPlayerThirdCard);
+        secondPlayerCard = secondPlayerThirdCard;
+        playCard(secondPlayerThirdCard, 'second');
     });
     secondPlayerFourthCard.addEventListener('click', () => {
-        playCard(secondPlayerFourthCard)
+        secondPlayerCard = secondPlayerFourthCard;
+        playCard(secondPlayerFourthCard, 'second')
     });
     secondPlayerFifthCard.addEventListener('click', () => {
-        playCard(secondPlayerFifthCard);
+        secondPlayerCard = secondPlayerFifthCard;
+        playCard(secondPlayerFifthCard, 'second');
     });
     secondPlayerSixthCard.addEventListener('click', () => {
-        playCard(secondPlayerSixthCard);
+        secondPlayerCard = secondPlayerSixthCard;
+        playCard(secondPlayerSixthCard, 'second');
     });
     secondPlayerSeventhCard.addEventListener('click', () => {
-        playCard(secondPlayerSeventhCard);
+        secondPlayerCard = secondPlayerSeventhCard;
+        playCard(secondPlayerSeventhCard, 'second');
     });
     secondPlayerEightCard.addEventListener('click', () => {
-        playCard(secondPlayerEightCard);
+        secondPlayerCard = secondPlayerEightCard;
+        playCard(secondPlayerEightCard, 'second');
     });
 
-    function playCard(card) {
-        card.style
+    function playCard(card, player) {
+        card.src = "images/whiteCard.jpg";
+
+        if (player === 'first'){
+            let resultSpace = document.querySelector('div#result span:nth-child(1)');
+            let cardValue = card.name;
+            resultSpace.innerText = cardValue;
+        }else{
+            let resultSpace = document.querySelector('div#result span:nth-child(3)');
+            let cardValue = card.name;
+            resultSpace.innerText = cardValue;
+        }
+
+        if (firstPlayerCard && secondPlayerCard){
+            playHand();
+        }
+
+    }
+
+    function playHand() {
+        let firstPlayerValue = firstPlayerCard.name;
+        let secondPlayerValue = secondPlayerCard.name;
+
+        if (firstPlayerValue > secondPlayerValue){
+            firstPlayerCard.style.border = '2px solid green';
+            secondPlayerCard.style.border = '2px solid darkred';
+        }else {
+            firstPlayerCard.style.border = '2px solid darkred';
+            secondPlayerCard.style.border = '2px solid green';
+        }
+
+        let historyDiv = document.getElementById('history');
+        historyDiv.innerText = historyDiv.innerText + `[${firstPlayerValue} vs ${secondPlayerValue}]`;
+
+        let firstResultSpace = document.querySelector('div#result span:nth-child(1)');
+        let secondResultSpace = document.querySelector('div#result span:nth-child(3)');
+
+        setTimeout(() => {
+            firstResultSpace.innerText = '';
+            secondResultSpace.innerText = '';
+        }, 2000);
+
+        firstPlayerCard = null;
+        secondPlayerCard = null;
     }
 }
