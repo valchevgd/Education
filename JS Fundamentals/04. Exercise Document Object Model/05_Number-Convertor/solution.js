@@ -9,16 +9,20 @@ function solve() {
         if (clicks === 0){
             let binaryTag = document.createElement('option');
             binaryTag.textContent = 'binary';
+            binaryTag.setAttribute('value', 'binary');
 
             selectElement.appendChild(binaryTag);
 
             let hexTag = document.createElement('option');
             hexTag.textContent = 'hexadeicmal';
+            hexTag.setAttribute('value', 'hexadeicmal');
 
             selectElement.appendChild(hexTag);
 
             clicks++;
+            console.log(binaryTag);
         }
+
 
     });
 
