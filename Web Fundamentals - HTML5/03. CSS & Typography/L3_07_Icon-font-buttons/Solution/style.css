@@ -1,0 +1,29 @@
+@import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+
+p{
+    color: white;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+p i{
+    color: white;
+
+}
+
+p a{
+    text-decoration: none;
+    color: white;
+    padding-top: 50px;
+}
+
+.click{
+    background: green;
+}
+
+.email{
+    background: orange;
+}

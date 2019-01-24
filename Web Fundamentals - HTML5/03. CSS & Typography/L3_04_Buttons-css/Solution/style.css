@@ -1,0 +1,18 @@
+.button{
+    cursor: pointer;
+    outline: none;
+}
+
+
+
+.button.fill{
+    background: rgb(0, 102, 0);
+}
+
+.button.fill.hover{
+    background: rgb(251, 251, 251);
+}
+.hover{
+    background: rgb(251, 251, 251);
+    color: rgb(51, 51, 51);
+}
