@@ -1,6 +1,6 @@
 function solve(array){
     let output = [];
-    let biggestNum = Number.MIN_VALUE;
+    let biggestNum = 0;
 
     for (let num of array){
         if (num >= biggestNum){
