@@ -1,0 +1,30 @@
+html{
+    font-family:  Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+body{
+    width: 90rem;
+    margin: 0 auto;
+}
+
+header{
+    border-bottom: 2px solid #000000;
+}
+
+header *{
+    display: inline-block;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    padding: 10px 15px;
+    color: forestgreen;
+}
+
+h1{
+    font-family:  Georgia, serif;
+    font-size: 1em;
+    line-height: 1.2;
+}
