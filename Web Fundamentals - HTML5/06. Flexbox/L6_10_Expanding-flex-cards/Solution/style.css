@@ -1,0 +1,43 @@
+body {
+    background: rgb(238, 238, 238);
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+span:nth-child(1),
+span:nth-child(3),
+span:nth-child(4) {
+    width: 150px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 1rem;
+    flex-direction: column;
+}
+
+span:nth-child(2) {
+    width: 680px;
+    height: auto;
+    position: relative;
+    background: black;
+    border-radius: 1rem;
+}
+
+img {
+    display: flex;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

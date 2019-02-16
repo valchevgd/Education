@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    width: 80vw;
+    margin: 0 auto;
+    background: rgb(238, 238, 238);
+}
+
+main{
+    width: 72%;
+    padding-top: 1rem;
+}
+
+aside{
+    width: 25%;
+    vertical-align: top;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+aside section{
+    padding-bottom: 1rem;
+}
+
+aside section nav ul li {
+    margin-left: 2rem;
+    list-style-type: square;
+}
+
+aside section nav ul li a{
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: Georgia, serif;
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+.site-title{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+p{
+    display: flex;
+}
+
+img {
+    border: 2px solid black;
+    padding: 1rem;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+main article:first-child img{
+    margin-left: auto;
+}
+
+main article:last-child img{
+    margin-right: auto;
+}
+
+blockquote{
+    font-family: Georgia, serif;
+    width: 40vw;
+    border-left: 2px solid grey;
+    padding-left: 1rem;
+    margin-left: 1rem;
+    font-style: italic;
+
+}
+
+blockquote p:last-child{
+    text-align: right;
+}
