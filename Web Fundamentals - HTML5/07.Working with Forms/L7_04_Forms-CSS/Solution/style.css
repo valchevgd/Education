@@ -1,0 +1,63 @@
+@import url('https://use.fontawesome.com/releases/v5.0.9/css/all.css');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+fieldset{
+    width: 20rem;
+    margin: 2rem;
+    background: #F9F9F9;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border: 1px solid black;
+}
+
+legend{
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    border: 1px solid black;
+    background: #F9F9F9;
+    border-radius: 0.5rem;
+}
+
+label{
+    display: block;
+}
+
+input{
+    width: 90%;
+    border-radius: 0.1rem;
+    border: none;
+    padding: 0.3rem;
+}
+
+p{
+    width: 90%;
+    margin: 1rem auto;
+    font-weight: bold;
+}
+
+span{
+    background: white;
+    border: 1px solid black;
+    display: flex;
+    border-radius: 0.5rem;
+    align-items: center;
+    padding: 0.2rem;
+}
+
+span:hover {
+    border-color: green;
+    color: green;
+}
+
+input[type='submit']{
+    width: 30%;
+    padding: 0.5rem;
+    border: 1px solid black;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}

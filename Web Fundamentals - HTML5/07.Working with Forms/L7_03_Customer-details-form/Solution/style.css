@@ -1,0 +1,45 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: Montserat, sans-serif;
+}
+
+form{
+    height: 98vh;
+    width: 40vw;
+    background: rgb(173, 216, 230);
+    margin: 1vh auto;
+    border-radius: 0.5rem;
+    color: #234465;
+    position: relative;
+}
+
+h2{
+    text-align: center;
+    padding: 2rem 0;
+}
+
+p{
+    margin-bottom: 1.5rem;
+}
+
+p:last-child{
+    display: block;
+    padding-top: 10rem;
+}
+
+label,
+input[type='checkbox']{
+    margin-left: 1.5rem;
+}
+
+input,
+textarea,
+select{
+    position: absolute;
+    left: 10rem;
+}
