@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background: #EBEBEB;
+}
+
+header {
+    display: flex;
+    border-bottom: 2px solid black;
+}
+
+nav {
+    align-self: center;
+    margin-left: auto;
+    padding-right: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+}
+
+nav ul {
+    margin: 0.5rem 0;
+    padding-inline-start: 1.5rem;
+    display: flex;
+}
+
+nav ul li {
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+input[type='checkbox']{
+    opacity: 0;
+
+}
+
+@media(min-width: 1024px){
+    label{
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    header{
+        display: block;
+        text-align: center;
+        border: none;
+    }
+
+    nav {
+        border-radius: 0;
+        border-bottom: 2px solid black;
+        border-top: 2px solid black;
+    }
+
+    nav ul{
+        display: block;
+        padding: 1rem 0;
+    }
+
+    nav ul li a{
+        display: flex;
+        flex: 1 0 100%;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    nav ul li:first-child a{
+        margin-top: 0;
+    }
+
+    label{
+        display: block;
+        margin-bottom: 1rem;
+        background: white;
+        padding: 0.5rem 0;
+        border-radius: 0.3rem;
+    }
+
+    nav ul{
+        display: none;
+    }
+
+    .menu:checked + header nav ul{
+        display: block;
+    }
+
+}

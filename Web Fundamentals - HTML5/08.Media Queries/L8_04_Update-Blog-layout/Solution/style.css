@@ -1,0 +1,188 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    width: 80vw;
+    margin: 0 auto;
+    background: rgb(238, 238, 238);
+}
+
+.site-header {
+    display: flex;
+    border-bottom: 2px solid black;
+}
+
+header nav {
+    align-self: center;
+    margin-left: auto;
+    padding-right: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+header nav ul {
+    margin: 0.5rem 0;
+    padding-inline-start: 1.5rem;
+    display: flex;
+}
+
+header nav ul li {
+    display: flex;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+input[type='checkbox'] {
+    opacity: 0;
+
+}
+
+@media (min-width: 1024px) {
+    label {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .site-header {
+        display: block;
+        text-align: center;
+        border: none;
+    }
+
+    .page{
+        display: block;
+    }
+    header nav {
+        border-radius: 0;
+        border-bottom: 2px solid black;
+        border-top: 2px solid black;
+    }
+
+    header nav ul {
+        display: block;
+        padding: 1rem 0;
+    }
+
+    header nav ul li a {
+        display: flex;
+        flex: 1 0 100%;
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    header nav ul li:first-child a {
+        margin-top: 0;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 1rem;
+        background: white;
+        padding: 0.5rem 0;
+        border-radius: 0.3rem;
+    }
+
+    header nav ul {
+        display: none;
+    }
+
+    .menu:checked + header nav ul {
+        display: block;
+    }
+
+}
+
+main {
+    width: 72%;
+    padding-top: 1rem;
+}
+
+aside {
+    width: 25%;
+    vertical-align: top;
+    margin-left: 1.5rem;
+    padding-top: 1rem;
+}
+
+aside section {
+    padding-bottom: 1rem;
+}
+
+aside section nav ul li {
+    margin-left: 2rem;
+    list-style-type: square;
+}
+
+aside section nav ul li a {
+    text-decoration: none;
+    color: rgb(0, 153, 0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: Georgia, serif;
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+.site-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+.page {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+p {
+    display: flex;
+}
+
+img {
+    border: 2px solid black;
+    padding: 1rem;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+main article:first-child img {
+    float: right;
+    margin-left: 1rem;
+}
+
+main article:last-child img {
+    float: left;
+    margin-right: 1rem;
+}
+
+blockquote {
+    font-family: Georgia, serif;
+    width: 40vw;
+    border-left: 2px solid grey;
+    padding-left: 1rem;
+    margin-left: 1rem;
+    font-style: italic;
+
+}
+
+blockquote p:last-child {
+    text-align: right;
+}

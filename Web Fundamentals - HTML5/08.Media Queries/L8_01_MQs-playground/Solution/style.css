@@ -1,0 +1,21 @@
+span{
+    color: green;
+}
+
+@media (max-width: 600px) {
+    .mq-width{
+        display: none;
+    }
+}
+
+@media (max-height: 600px) {
+    .mq-height{
+        display: none;
+    }
+}
+
+@media (aspect-ratio: 8/5) {
+    .mq-ar{
+        display: none;
+    }
+}
