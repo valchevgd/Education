@@ -35,11 +35,21 @@ p:last-child{
 label,
 input[type='checkbox']{
     margin-left: 1.5rem;
+    display: inline-block;
+    width: 25%;
 }
 
-input,
-textarea,
-select{
-    position: absolute;
-    left: 10rem;
+.radio{
+    width: 10%;
 }
+
+p:last-child{
+    margin-bottom: 0;
+}
+
+input[type='submit']{
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+
