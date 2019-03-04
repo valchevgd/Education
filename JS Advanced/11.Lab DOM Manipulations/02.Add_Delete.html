@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add / Delete</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>List of Items</h1>
+<ul id="items"></ul>
+<input type="text" id="newText"/>
+<input type="button" value="Add"
+       onclick="addItem()">
+<script>
+    function addItem() {
+
+        let $input = $('#newText');
+        let text = $input.val();
+        let $liElement = $('<li>');
+        $liElement.text(text + ' ');
+
+        let $deleteElement = $('<a href="#">[Delete]</a>');
+        $deleteElement.on('click', deleteItem);
+        $liElement.append($deleteElement);
+
+        let $ulElement = $('#items');
+        $ulElement.append($liElement);
+        $input.val('');
+
+        function deleteItem(e) {
+            $(e.target).parent().remove();
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stopwatch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="time" style="border:3px solid blue; text-align:center; font-size:2em; margin-bottom:10px">00:00</div>
+<button id="startBtn">Start</button>
+<button id="stopBtn" disabled="true">Stop</button>
+<script>
+    window.onload = function stopWatch() {
+
+        let $startBtn = $('#startBtn');
+        let $stopBtn = $('#stopBtn');
+        let $timer = $('#time');
+        let timer;
+        let sec = 0;
+        let seconds;
+        let minuets;
+
+        $startBtn.on('click', startWatch);
+
+        function startWatch() {
+            $timer.text('00:00');
+            timer = setInterval(run, 1000);
+            $startBtn.off('click', startWatch);
+            $startBtn.attr('disabled', true);
+            $stopBtn.on('click', stopWatch);
+            $stopBtn.attr('disabled', false);
+        }
+        
+        function stopWatch() {
+            clearInterval(timer);
+            $stopBtn.off('click', stopWatch);
+            $stopBtn.attr('disabled', true);
+            $startBtn.on('click', startWatch);
+            $startBtn.attr('disabled', false);
+            sec = 0;
+        }
+        
+        function run() {
+            sec++;
+            seconds = ('0' + sec % 60).slice(-2);
+            minuets = ('0' + Math.trunc((sec / 60) % 60)).slice(-2);
+
+            $timer.text(`${minuets}:${seconds}`)
+        }
+    }
+</script>
+</body>
+</html>

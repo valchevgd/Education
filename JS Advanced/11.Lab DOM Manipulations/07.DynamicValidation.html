@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8"><title>Focus</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>.error { border: 2px solid red; }</style>
+</head>
+<body onload="validate()">
+<label for="email">Enter email:</label>
+<input id="email" type="text"/>
+<script>
+    function validate() {
+        let $input = $('#email');
+
+        $input.change(changeStatus);
+
+        function changeStatus(){
+            $input.removeClass('error');
+            let email = $input.val();
+            if (!/[a-z]+@[a-z]+\.[a-z]+/.test(email)) {
+                $input.addClass('error');
+            }
+
+        }
+
+    }
+</script>
+</body>
+</html>
