@@ -13,4 +13,4 @@ function solve(examPoints, homeworkCompleted, totalHomework){
     console.log(examResult.toFixed(2));
 }
 
-solve(267, 5, 5);
+solve(270, 5, 5);
