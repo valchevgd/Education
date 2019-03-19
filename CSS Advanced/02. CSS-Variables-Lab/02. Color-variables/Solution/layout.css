@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,700i');
+
+html{
+    font-family: Roboto Condensed, sans-serif;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid var(--secondary-color);
+    border-radius: 0.5rem;
+    width: 75vw;
+    margin: 3rem auto;
+    padding: 2rem 3rem;
+}
+
+ul li{
+    list-style-type: none;
+    width: 26%;
+    color: var(--primary-color);
+}
+
+ul li p,
+ul li h3{
+    margin-bottom: 1rem;
+}
+
+ul li button{
+    font-weight: bolder;
+    background: var(--secondary-color);
+    color: var(--withe-color);
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem 0.9rem;
+}
+
+ul li button:hover{
+    cursor: pointer;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}
+

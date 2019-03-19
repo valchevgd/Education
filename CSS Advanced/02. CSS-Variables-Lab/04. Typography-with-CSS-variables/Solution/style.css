@@ -1,0 +1,15 @@
+@import "variables.css";
+@import "reset.css";
+@import "typography.css";
+
+article{
+    padding: 1.5rem 0 0 1.5rem;
+}
+
+ul{
+    padding-left: 3rem;
+}
+
+p{
+    margin: 1.5rem 0;
+}
