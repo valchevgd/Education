@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Core Module</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <style>
+        .pic{
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <article>
+
+        <h2>JS Core Module</h2>
+
+        <section class="mb-3">
+            <h4>JS Essentials</h4>
+            <a class="btn btn-success" data-toggle="collapse" href="#js-essentials" aria-expanded="false"
+               aria-controls="js-essentials">Details</a>
+            <div class="collapse mt-3" id="js-essentials">
+                <div class="card card-body">
+                    <p>В курса "JS Essentials" ще разгледате основния синтаксис на езика JavaScript. Изучават се
+                        типовете данни, оператори, изрази, условни конструкции, цикли и работа с функции. Ще се
+                        запознаете с DOM дървото и ще започнете да работите с JavaScript в браузъра. Курсът е силно
+                        насочен към практиката, с огромен брой упражнения в клас и практически изпит. Всички задачи от
+                        упражненията и изпитите се оценяват автоматизирано с онлайн Judge система. Оценяването в курса е
+                        на базата на предадени домашни и практически изпит.</p>
+                </div>
+                <button class="btn btn-info mt-3" data-toggle="modal" data-target="#js-core" data-course="Essentials">
+                    Apply
+                </button>
+            </div>
+        </section>
+
+        <section class="mb-3">
+            <h4>JS Advanced</h4>
+            <a class="btn btn-success" data-toggle="collapse" href="#js-advanced" aria-expanded="false"
+               aria-controls="js-advanced">Details</a>
+            <div class="collapse mt-3" id="js-advanced">
+                <div class="card card-body">
+                    <p>В курса "JS Advanced" ще надградите знанията си по JavaScript, като изучите по-сложните концепции
+                        като IFFE, clousure, objects и classes. Този курс ще развие алгоритмичното ви мислене и ще
+                        надгради знанията ви за DOM дървото. Ще се научите да манипулирате DOM дървото, да добавяте и
+                        триете елементи от него. Освен това, ще се научите как да тествате кода си използвайки
+                        библиотеки за Unit тестване. Ще разгледате OOP частта на JavaScript (inheritance, prototypes and
+                        prototypes chains). Оценяването в курса е на базата на предадени домашни и практически
+                        изпит.</p>
+                </div>
+                <button class="btn btn-info mt-3" data-toggle="modal" data-target="#js-core" data-course="Advanced">
+                    Apply
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <h4>JS Applications</h4>
+            <a class="btn btn-success" data-toggle="collapse" href="#js-applications" aria-expanded="false"
+               aria-controls="js-applications">Details</a>
+            <div class="collapse mt-3" id="js-applications">
+                <div class="card card-body">
+                    <p>В курса "JS Apps" ще научите какво сa HTTP заявки и как да ги използвате. Ще се запознаете с REST
+                        Services, какво са базите данни и как да работите с тях, какво означава асинхронен код, какво
+                        представляват Templating и Routing. Ще разберете каква е архитектурата на едно приложение и как
+                        да структурирате правилно апликациите си. На края на курса ще създадете собствен Single Page
+                        Application. Оценяването в курса е на базата на предадени домашни и практически изпит.</p>
+                </div>
+                <button class="btn btn-info mt-3" data-toggle="modal" data-target="#js-core" data-course="Applications">
+                    Apply
+                </button>
+            </div>
+        </section>
+    </article>
+
+    <div id="carouselExampleIndicators" class="carousel slide mt-5 mb-lg-5" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active pic">
+                <img class="d-block w-100" src="./img/firstSlide.jpg" alt="First slide">
+                <div class="carousel-caption d-none d-md-block border border-danger">
+                    <h5>JavaScript Essentials</h5>
+                    <p>Apply now at <a href="#">SoftUni</a></p>
+                </div>
+
+            </div>
+            <div class="carousel-item pic">
+                <img class="d-block w-100" src="./img/secondSlide.jpg" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block border border-danger">
+                    <h5>JavaScript Advanced</h5>
+                    <p>Apply now at <a href="#">SoftUni</a></p>
+                </div>
+            </div>
+            <div class="carousel-item pic">
+                <img class="d-block w-100" src="./img/thirdSlide.jpg" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block border border-danger">
+                    <h5>JavaScript Applications</h5>
+                    <p>Apply now at <a href="#">SoftUni</a></p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<div class="modal fade" id="js-core" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#js-core').on('show.bs.modal', function (event) {
+        let button = $(event.relatedTarget);
+        let course = button.data('course');
+        let modal = $(this);
+        modal.find('.modal-title').text(`Apply for the JS ${course} course`);
+        modal.find('.modal-body p').text(`Are you sure you want to apply for the JS ${course} course?`);
+    })
+</script>
+</body>
+</html>
