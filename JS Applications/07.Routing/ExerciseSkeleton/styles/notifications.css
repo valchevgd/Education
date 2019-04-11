@@ -1,0 +1,28 @@
+#notifications{
+
+    float: left;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+.notification{
+    padding: 10px 40px;
+    text-align: center;
+    border-radius: 15px;
+    color: white;
+    display: none;
+}
+
+#loading{
+    background: lightseagreen;
+}
+
+#success{
+    background: green;
+}
+
+#error{
+    background: red;
+}

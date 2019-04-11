@@ -7,6 +7,7 @@
 
     <!-- styles -->
     <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="styles/notifications.css">
 
     <!-- node modules scripts -->
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -15,10 +16,12 @@
     <script src="./node_modules/sammy/lib/plugins/sammy.handlebars.js"></script>
 
     <!-- default scripts -->
-    <script src="./scripts/services/kinvey.js"></script>
-    <script src="./scripts/services/app.js"></script>
+    <script src="./scripts/kinvey.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/notifications.js"></script>
     
     <!-- services -->
+    <script src="./scripts/services/user-service.js"></script>
 
     <!-- handlers -->
     <script src="./scripts/handlers/home-handler.js"></script>
@@ -27,4 +30,9 @@
 <body>
     <div id="root"></div>
 </body>
+<div id="notifications">
+    <div class="notification" id="loading">Loading...</div>
+    <div class="notification" id="success"></div>
+    <div class="notification" id="error"></div>
+</div>
 </html>
