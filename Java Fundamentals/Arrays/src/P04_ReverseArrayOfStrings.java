@@ -8,22 +8,21 @@ public class P04_ReverseArrayOfStrings {
 
         String[] input = scanner.nextLine().split(" ");
 
-        String[] output = reverseArray(input);
+        reverseArray(input);
 
-        System.out.println(String.join(" ", output));
+        System.out.println(String.join(" ", input));
     }
 
-    private static String[] reverseArray(String[] input) {
+    private static void reverseArray(String[] input) {
 
-        String[] reversed = new String[input.length];
-        int index = input.length - 1;
+        for (int i = 0; i < input.length / 2; i++) {
 
-        for (String word : input) {
+            String temp = input[i];
 
-            reversed[index] = word;
-            index--;
+            input[i] = input[input.length - 1 - i];
+            input[input.length - 1 - i] = temp;
         }
 
-        return reversed;
+
     }
 }
