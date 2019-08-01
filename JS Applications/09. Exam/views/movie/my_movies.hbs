@@ -1,0 +1,13 @@
+{{> header}}
+
+  <div id="myMovies">
+    <h1>My Movies</h1>
+    <div class="movies">
+        {{#each movies}}
+        {{#if isCreator}}
+            {{> movie}}
+        {{/if}}
+        {{/each}}
+    </div>
+  </div>
+{{> footer}}
